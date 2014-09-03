@@ -221,12 +221,11 @@
 %% include the abstract without chapter number but include it on table of contents:
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Abstract}
-\include{abstract}              %% Abstract
+\include{Vorwort}              %% Abstract
 
 
 \tableofcontents                %% this produces the table of contents - you might have guessed :-)
 
-\listoffigures
 
 %% if myaddlistoftodos is set to "true", the current list of open todos is added:
 \ifthenelse{\boolean{myaddlistoftodos}}{
@@ -244,9 +243,11 @@
 % \include{outlook}             %% this is a suggestion: you have to create this file on demand
 
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
-\addpart*{Appendix}             %% adding Appendix to tableofcontents
+\addpart*{Anhang}             %% adding Appendix to tableofcontents
 
 \printbibliography              %% remove, if using BibTeX instead of biblatex
+\listoffigures
+
 % \include{further_ressources}  %% this is a suggestion: you have to create this file on demand
 
 
