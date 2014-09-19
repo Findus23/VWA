@@ -166,8 +166,10 @@
 %% ========================================================================
 
 %% ... it's OK to put here your own usepackage commands ...
-
-
+\usepackage{wrapfig} % Bildumlauf
+\usepackage[toc]{glossaries}
+\glsenablehyper
+\makeglossaries
 
 
 %% ========================================================================
@@ -233,23 +235,22 @@
 }{}                             %% with todonotes-package option "disable" you can get rid of any todo in the output
 
 \mainmatter                     %% KOMA: marks main part using arabic page numbers and such; only available in scrbook
-
-\chapter{Inhalt}
-\include{example-short-chapter}
+\include{hardware}
 %% include tex file chapters:
 % \include{introduction}        %% this is a suggestion: you have to create this file on demand
 % \include{problem}             %% this is a suggestion: you have to create this file on demand
 % \include{solution}            %% this is a suggestion: you have to create this file on demand
 % \include{evaluation}          %% this is a suggestion: you have to create this file on demand
 % \include{outlook}             %% this is a suggestion: you have to create this file on demand
-\todo{Hierhin kommt der Inhalt}
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
 \addpart*{Anhang}             %% adding Appendix to tableofcontents
 
 \printbibliography              %% remove, if using BibTeX instead of biblatex
 \listoffigures
 \listoftables
-
+\glsaddall
+\glossarystyle{altlistgroup}
+\printglossary[title=Glossar]
 % \include{further_ressources}  %% this is a suggestion: you have to create this file on demand
 
 \chapter*{Eidesstattliche Erklärung}
