@@ -1,5 +1,16 @@
 % Glossareinträge
 \newacronym{cpu}{CPU}{Central Processing Unit}
+\newglossaryentry{Ampere}
+{
+  name=Ampere,
+  description={die SI-Basiseinheit der elektrischen Stromstärke}
+}
+\newglossaryentry{gpio}
+{
+  name=GPIO,
+  description={General Purpose Input/Output\newline Kontakte, die Softwareseitig für verschiedene Zwecke angesteuert werden können\newline z.B.: Auslesen von Sensoren, Ansteuern von Displays}
+}
+
 % Ende Glossareinträge
 
 \chapter{Hardware}
@@ -21,4 +32,10 @@ Ursprünglich war er als günstiger Computer gedacht, um britischen Jugendlichen
 \footcite{wiki:raspi_geschichte}
 
 \subsection{Technische Daten}
-Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \acrshort{cpu} mit 700 MHz, welche auf bis zu 1 GHz übertaktbar ist und je nach Modell 256 oder 512 MB Arbeitspeicher. Das Betriebsystem (verschiedene Linux-Distributionen stehen zur Auswahl
+Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \acrshort{cpu} mit 700 MHz, welche auf bis zu 1 GHz übertaktbar ist und je nach Modell 256 oder 512 MB Arbeitspeicher. Als Seichermedium für das Betriebsystem (verschiedene Linux-Distributionen stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
+
+Zur Stromversorgung genügt ein normales Handy-Ladegerät mit Micro-USB-Anschluss und 1 \gls{Ampere} Stromstärke, denn der Stromverbrauch liegt nur bei 3,5 Watt\footcite{strom} (Modell B).
+
+Andere Hardware kann man entweder über die beiden USB-Anschlüsse oder die 26 \gls{gpio}-Pins mit dem Raspberry Pi verbinden.
+
+

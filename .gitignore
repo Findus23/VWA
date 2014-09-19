@@ -91,3 +91,4 @@ sympy-plots-for-*.tex/
 # eigene
 *.bak
 *~
+*.glsdefs
