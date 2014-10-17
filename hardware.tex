@@ -37,3 +37,16 @@ Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. De
 Zur Stromversorgung genügt ein normales Handy-Ladegerät mit Micro-USB-Anschluss und 1 \gls{Ampere} Stromstärke, denn der Raspberry Pi benötigt nur 3,5 Watt\footcite{strom} (Modell B).
 
 Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und 26 \gls{gpio}-Pins.
+
+\section{Sensoren}
+Zur Messung der Werte werden folgende Sensoren verwendet:
+\begin{itemize}
+\item 4 Temperatursensoren \textit{DS18B20}
+\item Luftfeuchtesensor \textit{DHT22}
+\item Luftdrucksensor \textit{BMP085}
+\item Luftqualitätssensor \textit{VOLTCRAFT CO-20}
+\item CPU-Temperatur des Raspberry Pi
+\end{itemize}
+\subsection{Temperatur}
+Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Der hat eine Messgenauigkeit von $\pm 0.5\degree C$  und einen Messbereich von $-10\degree C$ bis $+85\degree C$. \footcite[20]{temp}
+
