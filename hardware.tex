@@ -1,16 +1,28 @@
 % Glossareinträge
 \newacronym{cpu}{CPU}{Central Processing Unit}
+
 \newglossaryentry{Ampere}
 {
   name=Ampere,
   description={die SI-Basiseinheit der elektrischen Stromstärke}
 }
+
+\newglossaryentry{Volt}
+{
+  name=Volt,
+  description={die SI-Basiseinheit der elektrischen Spannung}
+}
+
 \newglossaryentry{gpio}
 {
   name=GPIO,
   description={General Purpose Input/Output\newline Kontakte, die Softwareseitig für verschiedene Zwecke angesteuert werden können\newline z.B.: Auslesen von Sensoren, Ansteuern von Displays}
 }
-
+\newglossaryentry{Kernelmodul}
+{
+  name=Kernelmodul,
+  description={ein Programm, welches in das Betriebssystem geladen werden kann und oft zur Unterstützung von Hardware verwendet wird}
+}
 % Ende Glossareinträge
 
 \chapter{Hardware}
@@ -48,5 +60,30 @@ Zur Messung der Werte werden folgende Sensoren verwendet:
 \item CPU-Temperatur des Raspberry Pi
 \end{itemize}
 \subsection{Temperatur}
-Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Der hat eine Messgenauigkeit von $\pm 0.5\degree C$  und einen Messbereich von $-10\degree C$ bis $+85\degree C$. \footcite[20]{temp}
+%\begin{figure}
+%  \centering
+%     \includegraphics[width=0.4\textwidth]{figures/temp_sensor.jpg}
+%  \caption{Platine mit dem DS18B20 für den Innensensor (eigenes Werk)}
+%  \label{fig:temp_sensor}
+%\end{figure}
 
+
+Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Der hat eine Messgenauigkeit von $\pm 0.5\degree C$  und einen Messbereich von $-10\degree C$ bis $+85\degree C$. \footcite[20]{temp}
+\todo{eventuell Abbildung von Platine entfernen}
+
+Der Sensor wird mithilfe von einem 1-Wire-Bus ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit 5 \gls{Volt}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire}
+Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren parallel geschaltet werden können.
+
+Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss man nur eine virtuelle Datei auslesen, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+\begin{figure}
+  \centering
+     \includegraphics[width=0.4\textwidth]{figures/temp_pin.png}
+  \caption{Pinbelegung des DS18B20 (eigenes Werk)}
+  \label{fig:temp_pin}
+\end{figure}
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=\textwidth]{figures/temp_screenshot.png}
+  \caption{Die erste erfolgreiche Messung (eigenes Werk)}
+  \label{fig:temp_screenshot}
+\end{figure}
