@@ -167,7 +167,7 @@
 
 %% ... it's OK to put here your own usepackage commands ...
 \usepackage{wrapfig} % Bildumlauf
-\usepackage[toc]{glossaries}
+\usepackage[toc,nopostdot]{glossaries}
 \usepackage{gensymb}
 \glsenablehyper
 \makeglossaries
@@ -239,12 +239,7 @@
 \include{einleitung}
 
 \include{hardware}
-%% include tex file chapters:
-% \include{introduction}        %% this is a suggestion: you have to create this file on demand
-% \include{problem}             %% this is a suggestion: you have to create this file on demand
-% \include{solution}            %% this is a suggestion: you have to create this file on demand
-% \include{evaluation}          %% this is a suggestion: you have to create this file on demand
-% \include{outlook}             %% this is a suggestion: you have to create this file on demand
+
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
 \addpart*{Anhang}             %% adding Appendix to tableofcontents
 
@@ -252,7 +247,7 @@
 \listoffigures
 \listoftables
 \glsaddall
-\setglossarystyle{altlistgroup}
+\setglossarystyle{altlisthypergroup} % alternativ listhypergroup (in der selben Zeile)
 \printglossary[title=Glossar]
 
 \chapter*{Eidesstattliche Erklärung}
