@@ -57,7 +57,7 @@
 %% See babel documentation for further details.
 
 %% BibLaTeX-settings: (see biblatex reference for further description)
-\newcommand{\mybiblatexstyle}{authoryear}
+\newcommand{\mybiblatexstyle}{authoryear-ibid}
 %% e.g., "alphabetic", "authoryear", ...
 %% The biblatex style which is being used for referencing. See
 %% biblatex documentation for further details and more values.
@@ -166,10 +166,12 @@
 %% ========================================================================
 
 %% ... it's OK to put here your own usepackage commands ...
+\usepackage{siunitx}
 \usepackage{wrapfig} % Bildumlauf
 \usepackage[toc,nopostdot]{glossaries}
 \usepackage{gensymb}
 \glsenablehyper
+\input{glossar.tex}
 \makeglossaries
 
 
