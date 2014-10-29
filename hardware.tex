@@ -45,12 +45,12 @@ Zur Messung der Werte werden folgende Sensoren verwendet:
 %\end{figure}
 
 
-Mithilfe der Temperatur"-sensoren werden die Innen"-temperatur, die Gehäuse"-temperatur und die Bodentemperatur (Außen) gemessen. Der hat eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
+Mithilfe der Temperatur"-sensoren werden die Innen"-temperatur, die Gehäuse"-temperatur und die Bodentemperatur (Außen) gemessen. Diese haben eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
 
 Der Sensor wird mithilfe von einem 1-Wire-Bus ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit 5 \gls{Volt}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire}
-Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren parallel geschaltet werden können. (Abb. \ref{fig:temp_pin})
+Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können. (Abb. \ref{fig:temp_pin})
 
-Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei auslesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
 \begin{figure}
   \centering
      \includegraphics[width=0.4\textwidth]{figures/temp_pin.png}
@@ -69,11 +69,14 @@ Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach aus
 
 Zum Messen der Luftfeuchtigkeit der Außenluft wird der \textit{DHT22} verwendet. Dieser kann auch die Temperatur messen. 
 Wie der \textit{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeitssensor zusätzlich zur Stromversorgung nur ein Kabel zur Datenübertragung. Es können jedoch nicht mehrere Sensoren parallel geschaltet werden. \footcite[Wiring]{DHT}
+\todo{Messgenauigkeit}
+\todo{warum 22 und nicht 11}
+\todo{Datenblatt}
 
 \begin{figure}[h]
   \centering
      \includegraphics[width=\textwidth]{figures/steckbrett.png}
-  \caption{Anschlussskitze von \textit{DS18B20} (\ref{subsec:Temperatur}; Mitte), \textit{DHT22} (\ref{subsec:Luftfeuchtigkeit}; Links) und \textit{BMP085} (\ref{subsec:Luftdruck}; Rechts) (eigenes Werk)}
+  \caption{Anschlussskitze von \textit{DS18B20} (Mitte; \ref{subsec:Temperatur}), \textit{DHT22} (Links; \ref{subsec:Luftfeuchtigkeit}) und \textit{BMP085} (Rechts; \ref{subsec:Luftdruck}) (eigenes Werk)}
   \label{fig:steckbrett}
 \end{figure}
 
@@ -85,11 +88,14 @@ Die Daten des Sensors werden von einem \gls{C} Programm von Adafruit ausgelesen.
 
 Der \textit{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von\SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
 
-Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Stromversorgung benötigt. (siehe Abbildung \ref{fig:steckbrett})
-Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in dem er die Daten übertragen soll, und das grüne Kabel, über das die eigentlichen Daten übertragen werden.
+Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Datenübertragung benötigt. (siehe Abbildung \ref{fig:steckbrett})
+Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und das grüne Kabel, über das die eigentlichen Daten übertragen werden.
 \footcite[Hooking Everything Up]{bmp058_adafruit}
 
 Auch dies wird von einem Programm von Adafruit übernommen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
+
+\section{Display}
+\section{Anschluss}
