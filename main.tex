@@ -169,7 +169,6 @@
 \usepackage{siunitx}
 \usepackage{wrapfig} % Bildumlauf
 \usepackage[toc,nopostdot]{glossaries}
-\usepackage{gensymb}
 \glsenablehyper
 \input{glossar.tex}
 \makeglossaries
@@ -245,7 +244,11 @@
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
 \addpart*{Anhang}             %% adding Appendix to tableofcontents
 
-\printbibliography              %% remove, if using BibTeX instead of biblatex
+\printbibheading
+\printbibliography[type=book,heading=subbibliography,title={Literatur}]
+\printbibliography[type=online,heading=subbibliography,title={Online-Literatur}]
+\printbibliography[nottype=online,nottype=book,heading=subbibliography,title={sonstige Literatur}]
+
 \listoffigures
 \listoftables
 \glsaddall
