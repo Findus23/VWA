@@ -2,18 +2,19 @@
 
 Die Hardware besteht aus einem Raspberry Pi, \todo{genauere Beschreibung}
 \section{Der Raspberry Pi}
-\begin{wrapfigure}{r}{0.5\textwidth}
- \vspace{-16pt}
- \centering 
- \includegraphics[width=0.45\textwidth]{figures/raspberry.jpg}
- \caption[Raspberry Pi - Modell B]{Raspberry Pi - Modell B\footnotemark}
- \vspace{-50pt}
-\end{wrapfigure}
-\footnotetext{\cite{rasp_bild}}
 Der \textit{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \textit{Raspberry Pi Foundation} auf den Markt gebracht wurde.
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=0.8\textwidth]{figures/raspberry.jpg}
+ \caption[Raspberry Pi - Modell B]{Raspberry Pi - Modell B\footnotemark}
+  \label{fig:raspberry}
+\end{figure}
+\footnotetext{\cite{rasp_bild}}
+
 \subsection{Geschichte}
 Ursprünglich war er als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \textit{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmen beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
-\footcite{aboutraspberry}$^,$\todo{absolut geschummelt}
+\footcite{aboutraspberry}$^,$
 \footcite[Geschichte]{wiki:raspberry}
 
 \subsection{Technische Daten}
@@ -28,10 +29,10 @@ Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und 26 \gls{gpio}
 
 Zur Messung der Werte werden folgende Sensoren verwendet:
 \begin{itemize}
-\item 4 Temperatursensoren \textit{DS18B20}
-\item Luftfeuchtesensor \textit{DHT22}
-\item Luftdrucksensor \textit{BMP085}
-\item Luftqualitätssensor \textit{VOLTCRAFT CO-20}
+\item 4 Temperatursensoren \textit{DS18B20} (\ref{subsec:Temperatur})
+\item Luftfeuchtesensor \textit{DHT22} (\ref{subsec:Luftfeuchtigkeit})
+\item Luftdrucksensor \textit{BMP085} (\ref{subsec:Luftdruck})
+\item Luftqualitätssensor \textit{VOLTCRAFT CO-20} (\ref{subsec:Luftqualitat})
 \item CPU-Temperatur des Raspberry Pi
 \end{itemize}
 \subsection{Temperatur}
@@ -67,11 +68,8 @@ Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach aus
 \subsection{Luftfeuchtigkeit}
 \label{subsec:Luftfeuchtigkeit}
 
-Zum Messen der Luftfeuchtigkeit der Außenluft wird der \textit{DHT22} verwendet. Dieser kann auch die Temperatur messen. 
+Zum Messen der Luftfeuchtigkeit der Außenluft wird der \textit{DHT22} verwendet. Dieser kann auch die Temperatur messen. Die Messgenauigkeit beträgt \SI{\pm 0.5}{\degreeCelsius} und \SI{\pm 2}{\% .relative.Luftfeuchte}.\footcite{DHT22}
 Wie der \textit{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeitssensor zusätzlich zur Stromversorgung nur ein Kabel zur Datenübertragung. Es können jedoch nicht mehrere Sensoren parallel geschaltet werden. \footcite[Wiring]{DHT}
-\todo{Messgenauigkeit}
-\todo{warum 22 und nicht 11}
-\todo{Datenblatt}
 
 \begin{figure}[h]
   \centering
@@ -96,6 +94,17 @@ Auch dies wird von einem Programm von Adafruit übernommen. \footcite[Using the 
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
+Der letzte Sensor der hinzugekommen ist, war der \textit{VOLTCRAFT CO-20}. Da reguläre CO\textsubscript{2}-Sensoren teuer sind, habe ich mich für einen einfacheren \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an Flüchtige organischen Verbindungen in der Luft und gibt dafür einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt. Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \enquote{Raumluftfühler} von Velux.\footcite{Velux}
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=\textwidth]{figures/velux.jpg}
+  \caption{Velux-Raumluftfühler}
+  \label{fig:velux}
+\end{figure}
+
+Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird \enquote{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
+Dies gibt anschließend einen Wert aus, wobei 400 \todo{wirklich 400?} die anfängliche Qualität ist und ein höherer Wert eine schlechtere Luftqualität anzeigt.
 
 \section{Display}
 \section{Anschluss}
