@@ -87,24 +87,26 @@ Die Daten des Sensors werden von einem \gls{C} Programm von Adafruit ausgelesen.
 Der \textit{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von\SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
 
 Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Datenübertragung benötigt. (siehe Abbildung \ref{fig:steckbrett})
-Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und das grüne Kabel, über das die eigentlichen Daten übertragen werden.
+Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und zum anderen das grüne Kabel, über das die eigentlichen Daten übertragen werden.
 \footcite[Hooking Everything Up]{bmp058_adafruit}
 
 Auch dies wird von einem Programm von Adafruit übernommen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
-Der letzte Sensor der hinzugekommen ist, war der \textit{VOLTCRAFT CO-20}. Da reguläre CO\textsubscript{2}-Sensoren teuer sind, habe ich mich für einen einfacheren \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an Flüchtige organischen Verbindungen in der Luft und gibt dafür einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt. Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \enquote{Raumluftfühler} von Velux.\footcite{Velux}
+Der letzte Sensor, der hinzugekommen ist, ist der \textit{VOLTCRAFT CO-20}. Da reguläre CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \textit{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
+
+Der Sensor gibt einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt.Hierbei steht 450 für die anfängliche Qualität ist und ein höherer Wert für eine schlechtere Luftqualität.
+Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \textit{Raumluftfühler} von Velux.\footcite{Velux}
 
 \begin{figure}[h]
   \centering
      \includegraphics[width=\textwidth]{figures/velux.jpg}
-  \caption{Velux-Raumluftfühler}
+  \caption{Velux Raumluftfühler}
   \label{fig:velux}
 \end{figure}
 
 Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird \enquote{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
-Dies gibt anschließend einen Wert aus, wobei 400 \todo{wirklich 400?} die anfängliche Qualität ist und ein höherer Wert eine schlechtere Luftqualität anzeigt.
 
 \section{Display}
 \section{Anschluss}
