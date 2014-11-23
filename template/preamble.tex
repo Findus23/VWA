@@ -381,7 +381,8 @@ BCOR=\myBCOR,        %% binding correction (depends on how you bind
             %% CAUTION: If documentclass will be changed, *many* other things
             %%          change as well like heading structure, ...
 
-
+\usepackage[T1]{fontenc} %% war noch nicht vorhanden
+\usepackage[force,almostfull]{textcomp} %% hiermit funktionieren Umlaute in biblatex-Datei
 
 % FIXXME: adopting class usage:
 % from scrbook -> scrartcl OR scrreport:

@@ -216,7 +216,7 @@
 \newcommand{\codeline}[3]{
 	\lstinputlisting[language=#2,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3]{code/#1}
 }
-\usepackage{siunitx}
+\usepackage[binary-units = true]{siunitx}
 \usepackage{wrapfig} % Bildumlauf
 \usepackage[toc,nopostdot]{glossaries}
 \glsenablehyper
@@ -238,7 +238,7 @@
 
 \newcommand{\myLaT}{\LaTeX{}@TUG\xspace} %% LaTeX@TUG text "logo"
 
-\hyphenation{ex-am-ple hy-phen-ate}  %% in order to use German umlauts
+\hyphenation{ex-am-ple hy-phen-ate Gehäuse-temperatur Innen-temperatur Temperatur-sensoren}  %% in order to use German umlauts
 %% here (Ver-\"of-fent-li-chung), you have to check for 
 %% activated \usepackage[T1]{fontenc} in the preamble
 
