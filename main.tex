@@ -170,18 +170,19 @@
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{lightblue}{rgb}{0.8,0.8,1}
+
 
 \lstdefinestyle{mystyle}{
-	numberbychapter=false,
 	backgroundcolor=\color{white},
 %	basicstyle=\footnotesize,
 	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
-	commentstyle=\color{mygreen},
+	commentstyle=\color{mygreen}\itshape,
 	frame=shadowbox,
 	keepspaces=true,
-	keywordstyle=\color{blue},
+	keywordstyle=\color{blue}\bfseries,
 	numbers=left,
 	numbersep=5pt,
 	numberstyle=\color{mygray},
@@ -193,7 +194,33 @@
 	stepnumber=1,
 	stringstyle=\color{mymauve},
 	tabsize=2,
+	morekeywords={gpio, out},
 }
+\lstdefinestyle{terminal}{
+	backgroundcolor=\color{black},
+	breakatwhitespace=false,
+	breaklines=true,
+	commentstyle=\color{green}\itshape,
+	keepspaces=true,
+%	keywordstyle=\color{blue}\bfseries,
+	basicstyle=\color{white},
+	rulesepcolor=\color{gray},
+	showspaces=false,
+	showstringspaces=true,
+	showtabs=true,
+	stepnumber=1,
+	stringstyle=\color{grey},
+	tabsize=2,
+	keywordstyle=\color{lightblue},
+	keywordstyle=[2]{\color{green}},
+	morekeywords={gpio, out,-h},
+	morekeywords=[2]{lukas@kinderzimmer},
+	frame=lines,
+	framesep=5pt,
+}
+
+
+
 \lstset{literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -206,18 +233,18 @@
   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
   {€}{{\EUR}}1 {£}{{\pounds}}1 {ï»¿}{}0,
-	style=mystyle,
+  	numberbychapter=false,
 }
 \renewcommand{\lstlistingname}{Programmcode}
 \renewcommand{\lstlistlistingname}{Programmcode}
 \newcommand{\code}[4]{
-	\lstinputlisting[language=#2,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3]{code/#1}
 }
 \newcommand{\codeline}[3]{
-	\lstinputlisting[language=#2,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3]{code/#1}
 }
 \usepackage[binary-units = true]{siunitx}
-\usepackage{wrapfig} % Bildumlauf
+\usepackage{tabulary}
 \usepackage[toc,nopostdot]{glossaries}
 \glsenablehyper
 \input{glossar.tex}
@@ -238,7 +265,7 @@
 
 \newcommand{\myLaT}{\LaTeX{}@TUG\xspace} %% LaTeX@TUG text "logo"
 
-\hyphenation{ex-am-ple hy-phen-ate Gehäuse-temperatur Innen-temperatur Temperatur-sensoren}  %% in order to use German umlauts
+\hyphenation{ex-am-ple hy-phen-ate Gehäuse-temperatur Innen-temperatur Temperatur-sensoren Web-inter-face}  %% in order to use German umlauts
 %% here (Ver-\"of-fent-li-chung), you have to check for 
 %% activated \usepackage[T1]{fontenc} in the preamble
 

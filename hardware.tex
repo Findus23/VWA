@@ -4,7 +4,7 @@
 \todo{Einleitung}
 \section{Der Raspberry Pi}
 \label{sec:Raspberry}
-Der \textit{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \textit{Raspberry Pi Foundation} auf den Markt gebracht wurde.
+Der \emph{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \emph{Raspberry Pi Foundation} auf den Markt gebracht wurde.
 
 \begin{figure}[h]
   \centering
@@ -16,7 +16,7 @@ Der \textit{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \textit{
 
 \subsection{Geschichte}
 \label{subsec:Geschichte}
-Ursprünglich war er als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \textit{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmen beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
+Ursprünglich war er als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \emph{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmen beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
 \footcite{aboutraspberry}$^,$
 \footcite[Geschichte]{wiki:raspberry}
 
@@ -35,10 +35,10 @@ Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und 26 \gls{gpio}
 
 Zur Messung der Umweltdaten werden folgende Sensoren verwendet:
 \begin{itemize}
-\item 4 Temperatursensoren \textit{DS18B20} (\ref{subsec:Temperatur})
-\item Luftfeuchtesensor \textit{DHT22} (\ref{subsec:Luftfeuchtigkeit})
-\item Luftdrucksensor \textit{BMP085} (\ref{subsec:Luftdruck})
-\item Luftqualitätssensor \textit{VOLTCRAFT CO-20} (\ref{subsec:Luftqualitat})
+\item 4 Temperatursensoren \emph{DS18B20} (\ref{subsec:Temperatur})
+\item Luftfeuchtesensor \emph{DHT22} (\ref{subsec:Luftfeuchtigkeit})
+\item Luftdrucksensor \emph{BMP085} (\ref{subsec:Luftdruck})
+\item Luftqualitätssensor \emph{VOLTCRAFT CO-20} (\ref{subsec:Luftqualitat})
 \item CPU-Temperatur des Raspberry Pi
 \end{itemize}
 \subsection{Temperatur}
@@ -56,7 +56,7 @@ Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperat
 Der Sensor wird mithilfe von einem 1-Wire-Bus ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\ohm} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abb. \ref{fig:temp_pin})
 Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
 
-Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
 
 \begin{figure}[h]
   \centering
@@ -68,23 +68,23 @@ Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach aus
 \subsection{Luftfeuchtigkeit}
 \label{subsec:Luftfeuchtigkeit}
 
-Zum Messen der Luftfeuchtigkeit der Außenluft wird der \textit{DHT22} verwendet. Dieser kann auch die Temperatur messen. Die Messgenauigkeit beträgt \SI{\pm 0.5}{\degreeCelsius} und \SI{\pm 2}{\% .relative.Luftfeuchte}.\footcite{DHT22}
-Wie der \textit{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeitssensor zusätzlich zur Stromversorgung nur ein Kabel zur Datenübertragung. Es können jedoch nicht mehrere Sensoren parallel geschaltet werden. \footcite[Wiring]{DHT}
+Zum Messen der Luftfeuchtigkeit der Außenluft wird der \emph{DHT22} verwendet. Dieser kann auch die Temperatur messen. Die Messgenauigkeit beträgt \SI{\pm 0.5}{\degreeCelsius} und \SI{\pm 2}{\% .relative.Luftfeuchte}.\footcite{DHT22}
+Wie der \emph{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeitssensor zusätzlich zur Stromversorgung nur ein Kabel zur Datenübertragung. Es können jedoch nicht mehrere Sensoren parallel geschaltet werden. \footcite[Wiring]{DHT}
 
 \begin{figure}
   \centering
      \includegraphics[width=\textwidth]{figures/steckbrett.png}
-  \caption{Anschlussskitze von \textit{DS18B20} (Mitte; \ref{subsec:Temperatur}), \textit{DHT22} (Links; \ref{subsec:Luftfeuchtigkeit}) und \textit{BMP085} (Rechts; \ref{subsec:Luftdruck}) (eigenes Werk)}
+  \caption{Anschlussskitze von \emph{DS18B20} (Mitte; \ref{subsec:Temperatur}), \emph{DHT22} (Links; \ref{subsec:Luftfeuchtigkeit}) und \emph{BMP085} (Rechts; \ref{subsec:Luftdruck}) (eigenes Werk)}
   \label{fig:steckbrett}
 \end{figure}
 
-Die Daten des Sensors werden von einem \gls{C} Programm von Adafruit ausgelesen.
+Die Daten des Sensors werden von einem \gls{C}-Programm von Adafruit ausgelesen.
 \footcite[Software Install]{DHT}
 
 \subsection{Luftdruck}
 \label{subsec:Luftdruck}
 
-Der \textit{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von\SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
+Der \emph{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von\SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
 
 Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Datenübertragung benötigt. (siehe Abbildung \ref{fig:steckbrett})
 Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und zum anderen das grüne Kabel, über das die eigentlichen Daten übertragen werden.
@@ -94,10 +94,10 @@ Auch hier werden die Daten von einem Programm von Adafruit ausgelesen. \footcite
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
-Der letzte Sensor, der hinzugekommen ist, ist der \textit{VOLTCRAFT CO-20}. Da CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \textit{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
+Der letzte Sensor, der hinzugekommen ist, ist der \emph{VOLTCRAFT CO-20}. Da CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \emph{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
 
 Der Sensor gibt einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt. Hierbei steht 450 für die anfängliche Qualität ist und ein höherer Wert für eine schlechtere Luftqualität.
-Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \textit{Raumluftfühler} von Velux.\footcite{Velux}
+Da der \emph{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \emph{Raumluftfühler} von Velux.\footcite{Velux}
 
 \begin{figure}[h]
   \centering
@@ -106,7 +106,7 @@ Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich 
   \label{fig:velux}
 \end{figure}
 
-Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird \enquote{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
+Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird \emph{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
 
 \section{Display}
 
@@ -117,9 +117,9 @@ Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter 
   \label{fig:erstes_display}
 \end{figure}
 
-Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen Display von \textit{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
+Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen Display von \emph{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
 
-Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \textit{Pollin.de}\footcite{display_pollin} umgestiegen, welches mit einer Steckverbindung angeschlossen ist.
+Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \emph{Pollin.de}\footcite{display_pollin} umgestiegen, welches mit einer Steckverbindung angeschlossen ist.
 
 
 \begin{figure}[h]
