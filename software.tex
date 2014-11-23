@@ -12,7 +12,38 @@ Die Software, die verwendet wird, teilt sich in (?) Teile auf:
 \label{sec:main.sh}
 
 Das wichtigste Programm ist das Bash-Script \textit{main.sh}. Mithilfe eines Bash-Scriptes können Programme automatisiert gestartet und ihre Ausgaben ausgewertet werden.
-\codeline{main.sh}{bash}{1}
 Die Datei beginnt mit einem \textit{Shebang} (auch \textit{Magic Line}) genannt. Diese Zeile sagt dem Betriebssystem, womit die Datei ausgeführt werden soll.
+\codeline{main.sh}{bash}{1}
+Die folgenden Zeilen geben allgemeine Einstellungen an und definieren später gebrauchte Variablen. Man kann den Pfad zum Webserver, auf dem das Webinterface liegt, angeben. In Zeile 6 und 7 werden die Zugangsdaten für Pushbullet aus einer anderen Datei ausgelesen. Die Zeilen 8-10 geben die Pins an, an denen die LEDs angeschlossen sind. In Zeile 11-13 wird die grüne LED eingeschaltet, um zu zeigen, dass das Programm läuft.
 \code{main.sh}{bash}{2}{13}
-Die folgenden Zeilen geben allgemeine Einstellungen an und definieren später gebrauchte Variablen. Man kann den Pfad zum Webserver, auf dem das Webinterface liegt, angeben. In Zeile 7 und 8 werden die Zugangsdaten für Pushbullet aus einer anderen Datei ausgelesen. 
+Zeile 14 bis 26 kümmern sich um Parameter, die an das Programm übergeben werden. Mit \enquote{-d} kann die letzte Aufzeichnung überschrieben werden und mit \enquote{-h} wird ein kurzer Info-Text angezeigt.
+ 
+\begin{lstlisting}[language=bash,style=terminal]
+lukas@kinderzimmer:~$ main.sh -h
+-d csv-Datei leeren 
+für weitere Informationen siehe http://winkler.kremszeile.at/ oder https://github.com/Findus23/Umweltdatenmessung
+
+\end{lstlisting}
+\code{main.sh}{bash}{14}{26}
+Alles, was nun folgt, wird unendlich wiederholt, bis das Programm beendet wird. 
+\code{main.sh}{bash}{27}{28}
+In den folgenden drei Zeilen wird die aktuelle Uhrzeit und Datum in drei verschiedenen Formaten für drei verschiedene Zwecke.
+\begin{table}[h]
+	\centering
+	\begin{tabulary}{\textwidth}{C|C|C}
+		Code & Beispiel & Verwendung \\
+		\hline
+		\hline
+		\%Y/\%m/\%d\ \%H:\%M:\%S & 2014/11/23 16:47:50 & Format zum Abspeichern in \gls{CSV} \\
+		\hline
+		\%d.\%m\ \%H:\%M:\%S & 23.11 16:47:50 & einfach lesbares Format für Display \\
+		\hline
+		\%d.\%m.\%y\ \%H:\%M:\%S & 23.11.2014 & einfaches, exaktes Format für Webinterface \\
+	\end{tabulary}
+	\caption{Datumsformate}
+\end{table}
+
+
+\code{main.sh}{bash}{29}{31}
+\codeline{main.sh}{bash}{32}
+
