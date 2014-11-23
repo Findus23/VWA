@@ -1,8 +1,7 @@
 #!/bin/bash
-zufall=0
 PFAD="/var/www/" #Pfad zum Web-Verzeichnis
 r=0 # Backup-Zahl auf Null setzen
-IFS="; " #Spezial-Variable, enthält Trennzeichen zum Trennen von Luftdruck und -temperatur
+IFS="; " #Spezial-Variable - enthält Trennzeichen zum Trennen von Luftdruck und -temperatur
 re='^[0-9]+$' # Regulärer Ausdruck, ob Variable eine Zahl ist
 pushbullet_api_key=$(cat /home/pi/Temperaturmessung/Fremddateien/pushbullet_settings.txt | head -n 1)
 pushbullet_device=$(cat /home/pi/Temperaturmessung/Fremddateien/pushbullet_settings.txt | tail -n 1)
@@ -27,13 +26,9 @@ then
 fi
 while true
 do
-
 	uhrzeit=$(date +%Y/%m/%d\ %H:%M:%S) # z.B.: 2014/10/05 11:00:00 (für csv-Datei)
 	uhrzeit_display=$(date +%d.%m\ %H:%M:%S) # z.B.: 05.10 11:00:00 (für Display)
 	uhrzeit_lang=$(date +%d.%m.%y\ %H:%M:%S) # z.B.: 05.10.2014 11:00:00 (für Webinterface)
-	#zufall=$(($zufall + $((RANDOM % 10)) - 5)) # a um eine zufällige Zahl zwischen -5 und 5 ändern
-	##a=a+[Zufallszahl von 0-32767] modulo 10 (um eine Zahl von 0-10 zu bekommen) -5 (-> -5 bis 5)
-	#zufall=$a
 	rasp=$(/opt/vc/bin/vcgencmd measure_temp | cut -c 6,7,8,9) #Betriebstemberatur messen
 	temp1=$(echo "scale=3; $(grep 't=' /sys/bus/w1/devices/w1_bus_master1/10-000802b53835/w1_slave | awk -F 't=' '{print $2}') / 1000" | bc -l) #Innentemperatur
 	while [ "$temp1" == "-1.250" ] || [ "$temp1" == "85.000" ] || [ "$temp1" == "85.000" ]
