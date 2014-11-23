@@ -1,7 +1,9 @@
 \chapter{Hardware}
+\label{cha:Hardware}
 
-Die Hardware besteht aus einem Raspberry Pi, \todo{genauere Beschreibung}
+\todo{Einleitung}
 \section{Der Raspberry Pi}
+\label{sec:Raspberry}
 Der \textit{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \textit{Raspberry Pi Foundation} auf den Markt gebracht wurde.
 
 \begin{figure}[h]
@@ -13,21 +15,25 @@ Der \textit{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \textit{
 \footnotetext{\cite{rasp_bild}}
 
 \subsection{Geschichte}
+\label{subsec:Geschichte}
 Ursprünglich war er als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \textit{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmen beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
 \footcite{aboutraspberry}$^,$
 \footcite[Geschichte]{wiki:raspberry}
 
-\subsection{Technische Daten}
-Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \acrshort{cpu} mit 700 MHz, welche auf bis zu 1 GHz übertaktbar ist, und je nach Modell 256 oder 512 MB Arbeitsspeicher. Als Speichermedium für das Betriebssystem (verschiedene Linux-Distributionen stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
+Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{verkauf}) und 5 verschiedene Modelle entwickelt.
 
-Zur Stromversorgung genügt ein normales Handy-Ladegerät mit Micro-USB-Anschluss und 1 \gls{Ampere} Stromstärke, denn der Raspberry Pi benötigt nur 3,5 Watt\footcite{strom} (Modell B).
+\subsection{Technische Daten}
+\label{subsec:Technische Daten}
+Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \acrshort{cpu} mit \SI{700}{\glslink{Hertz}{\mega\hertz}}, welche auf bis zu \SI{1}{\glslink{Hertz}{\giga\hertz}} Übertaktbar ist, und je nach Modell \SI{256}{} oder \SI{512}{\mega\byte} Arbeitsspeicher. Als Speicher für das Betriebssystem (verschiedene Linux-Distributionen stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
+
+Zur Stromversorgung genügt ein normales Handyladegerät mit Micro-USB-Anschluss und mindestens \SI{1}{\gls{Ampere}} Stromstärke, denn der Raspberry Pi verbaucht nur \SI{3.5}{Watt}\footcite{strom} (Modell B).
 
 Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und 26 \gls{gpio}-Pins.
 
 \section{Sensoren}
 \label{sec:Sensoren}
 
-Zur Messung der Werte werden folgende Sensoren verwendet:
+Zur Messung der Umweltdaten werden folgende Sensoren verwendet:
 \begin{itemize}
 \item 4 Temperatursensoren \textit{DS18B20} (\ref{subsec:Temperatur})
 \item Luftfeuchtesensor \textit{DHT22} (\ref{subsec:Luftfeuchtigkeit})
@@ -38,26 +44,20 @@ Zur Messung der Werte werden folgende Sensoren verwendet:
 \subsection{Temperatur}
 \label{subsec:Temperatur}
 
-%\begin{figure}
-%  \centering
-%     \includegraphics[width=0.4\textwidth]{figures/temp_sensor.jpg}
-%  \caption{Platine mit dem DS18B20 für den Innensensor (eigenes Werk)}
-%  \label{fig:temp_sensor}
-%\end{figure}
+Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Diese haben eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
 
-
-Mithilfe der Temperatur"-sensoren werden die Innen"-temperatur, die Gehäuse"-temperatur und die Bodentemperatur (Außen) gemessen. Diese haben eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
-
-Der Sensor wird mithilfe von einem 1-Wire-Bus ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit 5 \gls{Volt}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire}
-Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können. (Abb. \ref{fig:temp_pin})
-
-Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
-\begin{figure}
+\begin{figure}[h]
   \centering
      \includegraphics[width=0.4\textwidth]{figures/temp_pin.png}
   \caption{Pinbelegung des DS18B20 (eigenes Werk)}
   \label{fig:temp_pin}
 \end{figure}
+
+Der Sensor wird mithilfe von einem 1-Wire-Bus ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\ohm} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abb. \ref{fig:temp_pin})
+Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
+
+Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+
 \begin{figure}[h]
   \centering
      \includegraphics[width=\textwidth]{figures/temp_screenshot.png}
@@ -71,7 +71,7 @@ Die Messdaten des \textit{DS18B20} können auf dem Raspberry Pi sehr einfach aus
 Zum Messen der Luftfeuchtigkeit der Außenluft wird der \textit{DHT22} verwendet. Dieser kann auch die Temperatur messen. Die Messgenauigkeit beträgt \SI{\pm 0.5}{\degreeCelsius} und \SI{\pm 2}{\% .relative.Luftfeuchte}.\footcite{DHT22}
 Wie der \textit{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeitssensor zusätzlich zur Stromversorgung nur ein Kabel zur Datenübertragung. Es können jedoch nicht mehrere Sensoren parallel geschaltet werden. \footcite[Wiring]{DHT}
 
-\begin{figure}[h]
+\begin{figure}
   \centering
      \includegraphics[width=\textwidth]{figures/steckbrett.png}
   \caption{Anschlussskitze von \textit{DS18B20} (Mitte; \ref{subsec:Temperatur}), \textit{DHT22} (Links; \ref{subsec:Luftfeuchtigkeit}) und \textit{BMP085} (Rechts; \ref{subsec:Luftdruck}) (eigenes Werk)}
@@ -90,13 +90,13 @@ Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zu
 Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und zum anderen das grüne Kabel, über das die eigentlichen Daten übertragen werden.
 \footcite[Hooking Everything Up]{bmp058_adafruit}
 
-Auch dies wird von einem Programm von Adafruit übernommen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
+Auch hier werden die Daten von einem Programm von Adafruit ausgelesen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
-Der letzte Sensor, der hinzugekommen ist, ist der \textit{VOLTCRAFT CO-20}. Da reguläre CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \textit{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
+Der letzte Sensor, der hinzugekommen ist, ist der \textit{VOLTCRAFT CO-20}. Da CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \textit{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
 
-Der Sensor gibt einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt.Hierbei steht 450 für die anfängliche Qualität ist und ein höherer Wert für eine schlechtere Luftqualität.
+Der Sensor gibt einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt. Hierbei steht 450 für die anfängliche Qualität ist und ein höherer Wert für eine schlechtere Luftqualität.
 Da der \textit{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \textit{Raumluftfühler} von Velux.\footcite{Velux}
 
 \begin{figure}[h]
@@ -117,9 +117,10 @@ Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter 
   \label{fig:erstes_display}
 \end{figure}
 
-Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, gibt es ein Display, welches die aktuellen Messwerte anzeigt. Ursprünglich habe ich ein (?)
-\todo{Modell vom ersten Display herausfinden}
-von Conrad verwendet.
+Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen Display von \textit{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
+
+Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \textit{Pollin.de}\footcite{display_pollin} umgestiegen, welches mit einer Steckverbindung angeschlossen ist.
+
 
 \begin{figure}[h]
   \centering
