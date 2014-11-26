@@ -84,7 +84,7 @@ Die Daten des Sensors werden von einem \gls{C}-Programm von Adafruit ausgelesen.
 \subsection{Luftdruck}
 \label{subsec:Luftdruck}
 
-Der \emph{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von\SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
+Der \emph{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von \SI{\pm 1.0}{\hecto\pascal} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
 
 Die Messdaten überträgt der Sensor über einen \gls{I2C}-Bus. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Datenübertragung benötigt. (siehe Abbildung \ref{fig:steckbrett})
 Zum einen ist das das gelbe Kabel, über welches der Raspberry Pi dem Sensor die Taktfrequenz schickt, in der er die Daten übertragen soll, und zum anderen das grüne Kabel, über das die eigentlichen Daten übertragen werden.
@@ -115,6 +115,7 @@ Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter 
      \includegraphics[width=0.9\textwidth]{figures/erstes_display.jpg}
   \caption{Erstes Display (eigenes Werk)}
   \label{fig:erstes_display}
+  \todo[inline]{evtl Bild mit Steckverbindung/löschen/zu Software verschieben}
 \end{figure}
 
 Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen Display von \emph{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
