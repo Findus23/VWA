@@ -11,23 +11,17 @@ Die Software, die verwendet wird, teilt sich in (?) Teile auf:
 \section{main.sh}
 \label{sec:main.sh}
 
-Das wichtigste Programm ist das Bash-Script \textit{main.sh}. Mithilfe eines Bash-Scriptes können Programme automatisiert gestartet und ihre Ausgaben ausgewertet werden.
-Die Datei beginnt mit einem \textit{Shebang} (auch \textit{Magic Line} genannt). Diese Zeile sagt dem Betriebssystem, womit die Datei ausgeführt werden soll.
-\codeline{main.sh}{bash}{1}
-Die folgenden Zeilen geben allgemeine Einstellungen an und definieren später gebrauchte Variablen. Man kann den Pfad zum Webserver, auf dem das Webinterface liegt, angeben. In Zeile 6 und 7 werden die Zugangsdaten für Pushbullet aus einer anderen Datei ausgelesen. Die Zeilen 8-10 geben die Pins an, an denen die LEDs angeschlossen sind. In Zeile 11-13 wird die grüne LED eingeschaltet, um zu zeigen, dass das Programm läuft.
-\code{main.sh}{bash}{2}{13}
-Zeile 14 bis 26 kümmern sich um Parameter, die an das Programm übergeben werden. Mit \enquote{-d} kann die letzte Aufzeichnung überschrieben werden und mit \enquote{-h} wird ein kurzer Info-Text angezeigt.
- 
-\begin{lstlisting}[language=bash,style=terminal]
-lukas@kinderzimmer:~$ main.sh -h
--d csv-Datei leeren 
-für weitere Informationen siehe http://winkler.kremszeile.at/ oder https://github.com/Findus23/Umweltdatenmessung
+Das wichtigste Programm ist das Bash-Script \textit{main.sh}. Mithilfe eines Bash-Scriptes können Programme automatisiert gestartet und ihre Ausgaben ausgewertet werden. Dieses Bash- Script kümmert sich um die Aufzeichnung und Speicherung der Daten und die Steuerung der anderen Programme. 
 
-\end{lstlisting}
-\code{main.sh}{bash}{14}{26}
-Alles, was nun folgt, wird unendlich wiederholt, bis das Programm beendet wird. 
+\subsection{Allgemeines}
+\label{subsec:main.sh/allgemeines}
+
+Zunchst werden 10 die Pins angegeben, an denen die LEDs angeschlossen sind. In den Zeilen 11-13 wird nun die grüne LED eingeschaltet, um zu zeigen, dass das Programm läuft.
+\code{main.sh}{bash}{8}{13}
+
+Nun startet das eigentliche Programm. Alles, was nun folgt wird wiederholt, bis die Aufzeichnung beendet wird.
 \code{main.sh}{bash}{27}{28}
-In den folgenden drei Zeilen wird die aktuelle Uhrzeit und Datum in drei verschiedenen Formaten für drei verschiedene Zwecke.
+In den folgenden drei Zeilen wird der aktuelle Zeitpunkt in drei verschiedenen Formaten für drei verschiedene Zwecke gespeichert.
 \begin{table}[h]
 	\centering
 	\begin{tabulary}{\textwidth}{C|C|C}
@@ -38,12 +32,49 @@ In den folgenden drei Zeilen wird die aktuelle Uhrzeit und Datum in drei verschi
 		\hline
 		\%d.\%m\ \%H:\%M:\%S & 23.11 16:47:50 & einfach lesbares Format für Display \\
 		\hline
-		\%d.\%m.\%y\ \%H:\%M:\%S & 23.11.2014 & einfaches, exaktes Format für Webinterface \\
+		\%d.\%m.\%y\ \%H:\%M:\%S & 23.11.2014 16:47:50 & einfaches, exaktes Format für Webinterface \\
 	\end{tabulary}
 	\caption{Datumsformate}
 \end{table}
 
-
 \code{main.sh}{bash}{29}{31}
+
+\subsection{Messung}
+\label{subsec:main.sh/messung}
+
+Als erstes werden die Sensoren ausgelesen. Am einfachsten kann der im Raspberry Pi integrierte Thermometer für die \acrshort{cpu}-Temperatur ausgelesen werden:
 \codeline{main.sh}{bash}{32}
 
+Nur etwas aufwändiger sind die Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
+\code{main.sh}{bash}{33}{40}
+
+Das Programm des Luftfeuchtesensors (siehe \ref{subsec:Luftfeuchtigkeit}) und des Luftdrucksensors (siehe \ref{subsec:Luftdruck}) geben die Feuchtigkeit und die Temperatur durch einen Strichpunkt getrennt an. Daher wird dies zu Beginn als Trennzeichen angegeben. 
+\codeline{main.sh}{bash}{4}
+Danach kann die Ausgabe einfach aufgetrennt werden.
+\code{main.sh}{bash}{66}{69}
+
+\emph{usb-sensors-linux}\footcite{usb-sensors-linux} gibt direkt den relativen Wert für die Luftqualität zurück, der nicht weiterbearbeitet werden muss.
+\codeline{main.sh}{bash}{84}
+
+\subsection{Speichern, Aufbereiten und Verarbeiten}
+
+Nachdem alle Sensoren ausgelesen und die Messwerte in Variablen gespeichert wurden, müssen sie dauerhaft gespeichert werden. Hierzu werden alle Werte durch ein Komma getrennt und  als neue Zeile an die bisherigen Messungen angehängt.
+\code{main.sh}{bash}{89}{90}
+Hierdurch entsteht eine \gls{CSV}-Datei die wie folgt aussehen kann.
+\dateiklein{dygraph.csv}
+Diese Datei wird auch in den Ordner des Webservers kopiert, damit es grafisch dargestellt werden kann (siehe \ref{}\todo{Link zu Webinterface}). Weiters verwendet die \textit{Endauswertung} (siehe \ref{}\todo{Link zu Endauswertung}) auch diese Datei zur rechnerischen Auswertung.
+
+Als nächstes wird der Text für das Display (siehe \ref{sec:Display}) erzeugt. Da dort der Platz beschränkt ist (16x2 Zeichen), werden alle Messwerte um 3 Stellen (bzw. 2 bei Luftdruck) gekürzt. Anschließend werden diese Daten in text.txt (für Display) und text\_ws.txt (für Webinterface) exportiert.
+\codeline{main.sh}{bash}{92}
+\datei{text.txt}
+\lstinputlisting[style=mystyle,caption=text\_ws.txt,basicstyle=\footnotesize]{code/text_ws.txt}
+
+Abschließend wird noch 8 Sekunden gewartet und jedes tausende Mal ein Backup gemacht und mir per E-Mail geschickt, bevor die nächste Messung von vorne beginnt.
+
+
+
+%%\begin{lstlisting}[language=bash,style=terminal]
+%%lukas@kinderzimmer:~$ main.sh -h
+%%-d csv-Datei leeren 
+%%für weitere Informationen siehe http://winkler.kremszeile.at/ oder https://github.comFindus23/Umweltdatenmessung
+%%\end{lstlisting}

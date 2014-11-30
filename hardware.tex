@@ -44,7 +44,7 @@ Zur Messung der Umweltdaten werden folgende Sensoren verwendet:
 \subsection{Temperatur}
 \label{subsec:Temperatur}
 
-Mithilfe der Temperatursensoren werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Diese haben eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
+Mithilfe von 4 Sensoren des Typ \emph{DS18B20} werden die Innentemperatur, die Gehäusetemperatur und die Bodentemperatur (Außen) gemessen. Diese haben eine Messgenauigkeit von \SI{\pm 0.5}{\degreeCelsius}  und einen Messbereich von \SI{-10}{\degreeCelsius}  bis \SI{+85}{\degreeCelsius}. \footcite[20]{temp}
 
 \begin{figure}[h]
   \centering
@@ -94,7 +94,7 @@ Auch hier werden die Daten von einem Programm von Adafruit ausgelesen. \footcite
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
-Der letzte Sensor, der hinzugekommen ist, ist der \emph{VOLTCRAFT CO-20}. Da CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \emph{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (z.B.: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
+Der letzte Sensor, der hinzugekommen ist, ist der \emph{VOLTCRAFT CO-20}. Da CO\textsubscript{2}-Sensoren und andere genaue Luftqualitätssensoren teuer sind, habe ich mich für einen einfachen \acrshort{voc}-Sensor entschieden. Dieser misst die Menge an \emph{Flüchtigen organischen Verbindungen} in der Luft. Dies sind Stoffe, die schon bei niedrigen Temperaturen verdampfen. Sie können von verschiedensten Quellen stammen (\zB: Benzindämpfe, Tabakrauch, Lacke)\footcite[41\psqq]{innenraum} und von leichten Kopfschmerzen und Konzentrationsstörungen bis zu bleibenden Gesundheitsschäden führen.\footcite[Gesundheitliche Wirkung]{VOC}
 
 Der Sensor gibt einen Wert an, der die relative Verschlechterung seit dem Einschalten angibt. Hierbei steht 450 für die anfängliche Qualität ist und ein höherer Wert für eine schlechtere Luftqualität.
 Da der \emph{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich den baugleichen \emph{Raumluftfühler} von Velux.\footcite{Velux}
@@ -106,9 +106,10 @@ Da der \emph{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich de
   \label{fig:velux}
 \end{figure}
 
-Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird \emph{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
+Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird das Programm \emph{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
 
 \section{Display}
+\label{sec:Display}
 
 \begin{figure}[h]
   \centering
@@ -131,3 +132,4 @@ Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \em
 \end{figure}
 
 \section{Anschluss}
+\label{sec:Anschluss}

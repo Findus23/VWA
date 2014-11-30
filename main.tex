@@ -176,7 +176,7 @@
 \lstdefinestyle{mystyle}{
 	backgroundcolor=\color{white},
 %	basicstyle=\footnotesize,
-	breakatwhitespace=false,
+%	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
 	commentstyle=\color{mygreen}\itshape,
@@ -194,7 +194,7 @@
 	stepnumber=1,
 	stringstyle=\color{mymauve},
 	tabsize=2,
-	morekeywords={gpio, out},
+	morekeywords={gpio, out, sudo, python, bc, cut, date, rev},
 }
 \lstdefinestyle{terminal}{
 	backgroundcolor=\color{black},
@@ -235,16 +235,23 @@
   {€}{{\EUR}}1 {£}{{\pounds}}1 {ï»¿}{}0,
   	numberbychapter=false,
 }
-\renewcommand{\lstlistingname}{Programmcode}
-\renewcommand{\lstlistlistingname}{Programmcode}
+\renewcommand{\lstlistingname}{Datei}
+\renewcommand{\lstlistlistingname}{Dateiverzeichnis}
 \newcommand{\code}[4]{
 	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3]{code/#1}
 }
 \newcommand{\codeline}[3]{
 	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3]{code/#1}
 }
+\newcommand{\dateiklein}[1]{
+	\lstinputlisting[style=mystyle,caption=#1,basicstyle=\scriptsize]{code/#1}
+}
+\newcommand{\datei}[1]{
+	\lstinputlisting[style=mystyle,caption=#1]{code/#1}
+}
 \usepackage[binary-units = true]{siunitx}
 \usepackage{tabulary}
+\newcommand{\zB}{z.\,B.} 
 \usepackage[toc,nopostdot]{glossaries}
 \glsenablehyper
 \input{glossar.tex}
