@@ -238,10 +238,10 @@
 \renewcommand{\lstlistingname}{Datei}
 \renewcommand{\lstlistlistingname}{Dateiverzeichnis}
 \newcommand{\code}[4]{
-	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3,label=file:#1]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3,label=file:#1-#3]{code/#1}
 }
 \newcommand{\codeline}[3]{
-	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3,label=file:#1]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3,label=file:#1-#3]{code/#1}
 }
 \newcommand{\dateiklein}[1]{
 	\lstinputlisting[style=mystyle,caption=#1,label=file:#1,basicstyle=\scriptsize]{code/#1}
@@ -259,6 +259,8 @@
 
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
+
+
 
 
 \hyphenpenalty=3000 %test von weniger Trennungen
@@ -300,6 +302,7 @@
 
 
 \input{template/pdf_settings}  %% should be *last* definitions in preamble!
+%\usepackage{showlabels}
 %% ========================================================================
 %%%% begin{document}
 %% ========================================================================
