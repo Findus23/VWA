@@ -13,5 +13,15 @@ echo ""
 echo "einleitung.tex"
 echo $(detex einleitung.tex | wc -m)
 echo ""
+echo "weitere_informationen.tex"
+echo $(detex weitere_informationen.tex | wc -m)
+echo ""
+echo "main.tex"
+echo $(detex main.tex | wc -m)
+echo ""
+echo ""
 echo "gesamt"
-echo $(detex einleitung.tex software.tex hardware.tex| wc -m)
+echo $(detex einleitung.tex software.tex hardware.tex weitere_informationen.tex| wc -m)
+echo ""
+echo "gesamt mit main.tex"
+echo $(detex einleitung.tex software.tex hardware.tex weitere_informationen.tex main.tex| wc -m)

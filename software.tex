@@ -42,16 +42,17 @@ In den folgenden drei Zeilen wird der aktuelle Zeitpunkt in drei verschiedenen F
 \subsection{Messung}
 \label{subsec:main.sh/messung}
 
-Als erstes werden die Sensoren ausgelesen. Am einfachsten kann der im Raspberry Pi integrierte Thermometer für die \acrshort{cpu}-Temperatur ausgelesen werden:
+Als erstes werden die Sensoren ausgelesen. Am einfachsten kann mit dem im Raspberry Pi integrierten Thermometer die \acrshort{cpu}-Temperatur ausgelesen werden:
 \codeline{main.sh}{bash}{32}
 
-Nur etwas aufwändiger sind die Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
+Nur wenig aufwändiger sind die Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
 \code{main.sh}{bash}{33}{40}
 
-Das Programm des Luftfeuchtesensors (siehe \ref{subsec:Luftfeuchtigkeit}) und des Luftdrucksensors (siehe \ref{subsec:Luftdruck}) geben die Feuchtigkeit und die Temperatur durch einen Strichpunkt getrennt an. Daher wird dies zu Beginn als Trennzeichen angegeben. 
+Die Adafruit-Programme\footcite{DHT}\footcite{bmp058_adafruit}, die den Luftfeuchtesensor (siehe \ref{subsec:Luftfeuchtigkeit}) und den Luftdrucksensor (siehe \ref{subsec:Luftdruck}) auslesen, geben die Feuchtigkeit und die Temperatur durch einen Strichpunkt getrennt an. Daher wird dies zu Beginn als Trennzeichen angegeben. 
 \codeline{main.sh}{bash}{4}
-Danach kann die Ausgabe einfach aufgetrennt werden.
+Dadurch kann die Ausgabe einfach aufgetrennt werden:
 \code{main.sh}{bash}{66}{69}
+Auch hier wird bei ungültigen Messwerten mehrmals gemessen.
 
 \emph{usb-sensors-linux}\footcite{usb-sensors-linux} gibt direkt den relativen Wert für die Luftqualität zurück, der nicht weiterbearbeitet werden muss.
 \codeline{main.sh}{bash}{84}
@@ -67,10 +68,30 @@ Diese Datei wird auch in den Ordner des Webservers kopiert, damit es grafisch da
 Als nächstes wird der Text für das Display (siehe \ref{sec:Display}) erzeugt. Da dort der Platz beschränkt ist (16x2 Zeichen), werden alle Messwerte um 3 Stellen (bzw. 2 bei Luftdruck) gekürzt. Anschließend werden diese Daten in text.txt (für Display) und text\_ws.txt (für Webinterface) exportiert.
 \codeline{main.sh}{bash}{92}
 \datei{text.txt}
+\label{file:text.txt}
 \lstinputlisting[style=mystyle,caption=text\_ws.txt,basicstyle=\footnotesize]{code/text_ws.txt}
 
 Abschließend wird noch 8 Sekunden gewartet und jedes tausende Mal ein Backup gemacht und mir per E-Mail geschickt, bevor die nächste Messung von vorne beginnt.
 
+\section{Display}
+\label{sec:Software/Display}
+Um die aktuellen Messungen auch ohne Computer zu sehen, werden sie auch direkt am Raspberry Pi auf einem Display angezeigt (siehe auch \ref{sec:Display}). Um das Display anzusteuern wird ein Programm\footcite{schnatterente_code} von \emph{www.schnatterente.net} verwendet. Dieses wurde von mir um einige Funktionen ergänzt. 
+
+Das Programm liest aus \emph{text.txt} (siehe \ref{file:text.txt}) die aktuellen Messwerte aus. Da der Platz jedoch stark beschränkt ist, werden diese auf 11 Seiten aufgeteilt, zwischen denen das Display alle 3 Sekunden wechselt.
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/display.jpg}
+  \caption{eingebautes Display (eigenes Werk)}
+  \label{fig:display}
+\end{figure}
+
+\section{Webinterface}
+\label{sec:Webinterface}
+
+Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese kann live auf der Webseite des Raspberry Pi und zeitverzögert unter \href{http://winkler.kremszeile.at}{winkler.kremszeile.at} angesehen werden. Die Auswertung besteht aus zwei von einander unabhängigen Teilen. Zum einen gibt es die Anzeige der Live-Daten, zum anderen die Darstellung der kompletten Aufzeichnung als interaktives Diagramm.
+
+\subsection{Livedaten}
+\label{subsec:Livedaten}
 
 
 %%\begin{lstlisting}[language=bash,style=terminal]

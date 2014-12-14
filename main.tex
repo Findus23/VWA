@@ -57,7 +57,7 @@
 %% See babel documentation for further details.
 
 %% BibLaTeX-settings: (see biblatex reference for further description)
-\newcommand{\mybiblatexstyle}{authoryear-ibid}
+\newcommand{\mybiblatexstyle}{authortitle-icomp}
 %% e.g., "alphabetic", "authoryear", ...
 %% The biblatex style which is being used for referencing. See
 %% biblatex documentation for further details and more values.
@@ -194,7 +194,7 @@
 	stepnumber=1,
 	stringstyle=\color{mymauve},
 	tabsize=2,
-	morekeywords={gpio, out, sudo, python, bc, cut, date, rev},
+	morekeywords={gpio, out, sudo, python, bc, cut, date, rev, vcgencmd},
 }
 \lstdefinestyle{terminal}{
 	backgroundcolor=\color{black},
@@ -238,16 +238,16 @@
 \renewcommand{\lstlistingname}{Datei}
 \renewcommand{\lstlistlistingname}{Dateiverzeichnis}
 \newcommand{\code}[4]{
-	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#4,caption=#1 (Zeile #3 bis #4),firstnumber=#3,label=file:#1]{code/#1}
 }
 \newcommand{\codeline}[3]{
-	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3]{code/#1}
+	\lstinputlisting[language=#2,style=mystyle,firstline=#3,lastline=#3,caption=#1 (Zeile #3),firstnumber=#3,label=file:#1]{code/#1}
 }
 \newcommand{\dateiklein}[1]{
-	\lstinputlisting[style=mystyle,caption=#1,basicstyle=\scriptsize]{code/#1}
+	\lstinputlisting[style=mystyle,caption=#1,label=file:#1,basicstyle=\scriptsize]{code/#1}
 }
 \newcommand{\datei}[1]{
-	\lstinputlisting[style=mystyle,caption=#1]{code/#1}
+	\lstinputlisting[style=mystyle,caption=#1,label=file:#1]{code/#1}
 }
 \usepackage[binary-units = true]{siunitx}
 \usepackage{tabulary}
@@ -256,6 +256,10 @@
 \glsenablehyper
 \input{glossar.tex}
 \makeglossaries
+
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
 
 \hyphenpenalty=3000 %test von weniger Trennungen
 \tolerance=1000
@@ -329,8 +333,8 @@
 \include{hardware}
 \include{software}
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
-\addpart*{Anhang}             %% adding Appendix to tableofcontents
-
+%\addpart*{Anhang}             %% adding Appendix to tableofcontents
+\include{weitere_informationen}
 \printbibheading
 \printbibliography[type=book,heading=subbibliography,title={Literatur}]
 \printbibliography[type=online,heading=subbibliography,title={Online-Literatur}]
