@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper,oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo} 
+\usepackage{lipsum}
+\usepackage{nag}
+%% Einstellungen aus Template
+\newcommand{\mycolorlinks}{true}
+\newcommand{\myauthor}{Lukas Winkler}
+\newcommand{\mytitle}{Begleitprotokoll -- Umweltdatenmessung mit dem Raspberry Pi} 
+\newcommand{\mysubject}{\mytitle}
+\newcommand{\mykeywords}{Umweltdatenmessung, Raspberry, Temperatur, Klimadaten, Wetter, Auswertung, Software}
+
+\usepackage{xcolor}
+\definecolor{DispositionColor}{RGB}{30,103,182}
+\input{template/pdf_settings}
+\hyphenpenalty=3000 %test von weniger Trennungen
+\tolerance=1000
+
+\author{\myauthor}
+\title{\mytitle}
+\begin{document}
+\maketitle
+
+\section{Verlauf -- Kontakt mit Betreuungslehrer}
+
+\begin{itemize}
+	\item Sommerferien 2014:
+	\begin{itemize}
+		\item Ich habe mir einen Raspberry Pi gekauft.
+		\item Während der Sommerferien experimentiere ich, was man damit machen kann.
+	\end{itemize}
+	\item September/Oktober 2014:
+	\begin{itemize}
+		\item In einer der ersten Informatik-Stunden sollten wir nach Raspberry Pi-Projekten für den Unterricht suchen. So kam ich auf die Idee, eine Wetterstation zu bauen.
+		\item Bis zur nächsten Stunde habe ich ein Programm geschrieben, welches zufällige Datenreihen erstellt und als Diagramm grafisch darstellt.
+	\end{itemize}
+	\item 14. Oktober
+	\begin{itemize}
+		\item Ich habe eine Webseite\footnote{\href{http://lukaswiki.onpw.de/rasp/}{lukaswiki.onpw.de/rasp/}} eingerichtet, auf der alle Dateien und Fortschritte protokolliert werden.
+	\end{itemize}
+	\item 2. November
+	\begin{itemize}
+		\item Erste Teile für die Hardware gekauft (Steckbrett, Verbindungskabel, Temperatursensor)
+	\end{itemize}
+	\item 14. November
+	\begin{itemize}
+		\item Erste erfolgreiche Messung
+	\end{itemize}
+
+\end{itemize}
+\section{Hilfsmittel und Hilfestellungen}
+\lipsum[1]
+\section{Länge der Arbeit}
+\begin{table}[h]
+	\centering
+	\label{my-label}
+	\begin{tabular}{c|c}
+	Teil		&	Zeichen \\
+		&	\\
+		&	\\ \hline
+	Gesamt	&  
+	\end{tabular}
+	\caption{My caption}
+\end{table}
+\end{document}
