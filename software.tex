@@ -62,7 +62,7 @@ Auch hier wird bei ungültigen Messwerten mehrmals gemessen.
 Nachdem alle Sensoren ausgelesen und die Messwerte in Variablen gespeichert wurden, müssen sie dauerhaft gespeichert werden. Hierzu werden alle Werte durch ein Komma getrennt und  als neue Zeile an die bisherigen Messungen angehängt.
 \code{main.sh}{bash}{89}{90}
 Hierdurch entsteht eine \gls{CSV}-Datei die wie folgt aussehen kann.
-\dateiklein{dygraph.csv}
+\dateiklein{dygraphs.csv}
 Diese Datei wird auch in den Ordner des Webservers kopiert, damit es grafisch dargestellt werden kann (siehe \ref{subsec:Diagramme}). Weiters verwendet die \textit{Endauswertung} (siehe \ref{}\todo{Link zu Endauswertung}) auch diese Datei zur rechnerischen Auswertung.
 
 Als nächstes wird der Text für das Display (siehe \ref{sec:Display}) erzeugt. Da dort der Platz beschränkt ist (16x2 Zeichen), werden alle Messwerte um 3 Stellen (bzw. 2 bei Luftdruck) gekürzt. Anschließend werden diese Daten in text.txt (für Display) und text\_ws.txt (für Webinterface) exportiert.
@@ -76,7 +76,7 @@ Abschließend wird noch 8 Sekunden gewartet und jedes tausende Mal ein Backup ge
 \label{sec:Software/Display}
 Um die aktuellen Messungen auch ohne Computer zu sehen, werden sie auch direkt am Raspberry Pi auf einem Display angezeigt (siehe auch \ref{sec:Display}). Um das Display anzusteuern wird ein Programm\footcite{schnatterente_code} von \emph{www.schnatterente.net} verwendet. Dieses wurde von mir um einige Funktionen ergänzt. 
 
-Das Programm liest aus \emph{text.txt} (siehe \ref{file:text.txt}) die aktuellen Messwerte aus. Da der Platz jedoch stark beschränkt ist, werden diese auf 11 Seiten aufgeteilt, zwischen denen das Display alle 3 Sekunden wechselt.
+Das Programm liest aus \emph{text.txt} (siehe Datei \ref{file:text.txt}) die aktuellen Messwerte aus. Da der Platz jedoch stark beschränkt ist, werden diese auf 11 Seiten aufgeteilt, zwischen denen das Display alle 3 Sekunden wechselt.
 \begin{figure}[h]
   \centering
      \includegraphics[width=0.9\textwidth]{figures/display.jpg}
@@ -99,18 +99,20 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
   \label{fig:display_neu}
 \end{figure}
 
-Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden. Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Zusätzlich gibt es für ältere Browser eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
+Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden. Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Browser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
 
 \subsubsection{Wetterrater}
 \label{subsubsec:Wetterrater}
 
-Um die Daten auch anders zu nutzen habe ich einen \emph{Wetterrater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{schätzen}. Es gibt drei Werte aus:
+Um die Daten auch anders zu nutzen habe ich einen \emph{Wetterrater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
+
+Der Wetterrater gibt drei Werte aus:
 \begin{itemize}
 	\item Tag oder Nacht
 	\item Niederschlag (keiner/Gewitter/Schnee/Regen/Schneeregen)
 	\item Bewölkungsgrad (sonnig/leicht bewölkt/stark bewölkt)
 \end{itemize}
-Aus diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wettericons}) bestimmt, welche dann angezeigt wird.
+Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wettericons}) ausgewählt, welche dann angezeigt wird.
 
 \begin{figure}[h]
   \centering
@@ -121,7 +123,38 @@ Aus diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wettericons}) 
 
 \subsection{Diagramme}
 \label{subsec:Diagramme}
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=\textwidth]{figures/dygraphs.png}
+  \caption{Diagramm (eigenes Werk)}
+  \label{fig:dygraphs}
+\end{figure}
+Damit auch die vergangenen Messergebnisse angesehen werden können, werden diese im Webinterface auf einer eigenen Seite als Diagramm dargestellt. Diese werden mithilfe von \emph{dygraphs}\footcite{dygraphs}, einer \gls{Javascript}-Bibliothek für interaktive Diagramme, erstellt.\footnote{\href{http://winkler.kremszeile.at/dygraphs_au\%C3\%9Fen.html}{winkler.kremszeile.at/dygraphs\_außen.html}}
 
+Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei  \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können einfach einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist auch darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
+Auf Youtube gibt es ein Video, wo man die Verwendung in Aktion sehen kann: \href{https://www.youtube.com/watch?v=1bv6CEXuN5c}{www.youtube.com/watch?v=1bv6CEXuN5c}
+\begin{figure}
+  \centering
+     \makebox[\textwidth][c]{\includegraphics[width=1.35\textwidth]{figures/dygraphs_ipad.png}}
+  \caption{Diagramm am Tablet (eigenes Werk)}
+  \label{fig:dygraphs_tablet}
+\end{figure}
+
+\section{Endauswertung}
+\label{sec:Endauswertung}
+
+\section{diverses}
+\label{sec:diverses}
+
+\subsection{autostart}
+\label{subsec:autostart}
+
+\subsection{mitternacht.sh}
+\label{subsec:mitternacht.sh}
+\todo[inline]{eventuell entfernen}
+
+\subsection{Weather Underground}
+\label{subsec:wunderground}
 
 %%\begin{lstlisting}[language=bash,style=terminal]
 %%lukas@kinderzimmer:~$ main.sh -h

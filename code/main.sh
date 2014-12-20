@@ -87,7 +87,7 @@ then
 	qualitat=""
 fi
 ausgabe=${uhrzeit}\,${temp1}\,${temp2}\,${temp3}\,${temp4}\,${luft_temp}\,${luft_feucht}\,${druck}\,${temp_druck}\,${rasp},${qualitat}
-echo $ausgabe >>/home/pi/Temperaturmessung/dygraph.csv
+echo $ausgabe >>/home/pi/Temperaturmessung/dygraphs.csv
 echo "$uhrzeit	${temp1},${temp2},${temp3},${temp4},${luft_temp},${luft_feucht},${druck},${temp_druck},${rasp},${qualitat}" #Ausgabe des aktuellen Wertes im Terminal
 temp1_r=$(echo $temp1 |rev | cut -c 3- |rev)
 temp2_r=$(echo $temp2 |rev | cut -c 3- |rev)
