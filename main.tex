@@ -172,7 +172,6 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{lightblue}{rgb}{0.8,0.8,1}
 
-
 \lstdefinestyle{mystyle}{
 	backgroundcolor=\color{white},
 %	basicstyle=\footnotesize,
@@ -196,30 +195,6 @@
 	tabsize=2,
 	morekeywords={gpio, out, sudo, python, bc, cut, date, rev, vcgencmd},
 }
-\lstdefinestyle{terminal}{
-	backgroundcolor=\color{black},
-	breakatwhitespace=false,
-	breaklines=true,
-	commentstyle=\color{green}\itshape,
-	keepspaces=true,
-%	keywordstyle=\color{blue}\bfseries,
-	basicstyle=\color{white},
-	rulesepcolor=\color{gray},
-	showspaces=false,
-	showstringspaces=true,
-	showtabs=true,
-	stepnumber=1,
-	stringstyle=\color{grey},
-	tabsize=2,
-	keywordstyle=\color{lightblue},
-	keywordstyle=[2]{\color{green}},
-	morekeywords={gpio, out,-h},
-	morekeywords=[2]{lukas@kinderzimmer},
-	frame=lines,
-	framesep=5pt,
-}
-
-
 
 \lstset{literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
@@ -258,12 +233,12 @@
 \makeglossaries
 
 \usepackage{chngcntr}
-\counterwithout{footnote}{chapter}
+\counterwithout{footnote}{chapter} % Durchgehende Nummerierung der Fußnoten
 \usepackage{pgf,tikz}
 \usetikzlibrary{arrows}
 
 
-\hyphenpenalty=3000 %test von weniger Trennungen
+\hyphenpenalty=3000 % weniger Wort-Trennungen
 \tolerance=1000
 
 
@@ -272,9 +247,6 @@
 %% ========================================================================
 
 %% ... it's OK to put here your own newcommand/newenvironment-definitions ...
-
-
-
 
 \newcommand{\myLaT}{\LaTeX{}@TUG\xspace} %% LaTeX@TUG text "logo"
 
