@@ -227,15 +227,17 @@
 \usepackage[binary-units = true]{siunitx}
 \usepackage{tabulary}
 \newcommand{\zB}{z.\,B.} 
-\usepackage[toc,nopostdot]{glossaries}
+\usepackage[toc,nopostdot,nonumberlist]{glossaries}
 \glsenablehyper
 \input{glossar.tex}
 \makeglossaries
 
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter} % Durchgehende Nummerierung der Fußnoten
+
 \usepackage{pgf,tikz}
 \usetikzlibrary{arrows}
+\usepackage{pdfpages}
 
 
 \hyphenpenalty=3000 % weniger Wort-Trennungen
@@ -312,6 +314,7 @@
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
 %\addpart*{Anhang}             %% adding Appendix to tableofcontents
 \include{weitere_informationen}
+\include{praesentationen}
 \printbibheading
 \printbibliography[type=book,heading=subbibliography,title={Literatur}]
 \printbibliography[type=online,heading=subbibliography,title={Online-Literatur}]

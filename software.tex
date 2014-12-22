@@ -107,24 +107,24 @@ Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und 
 Um die Daten auch anders zu nutzen habe ich einen \emph{Wetterrater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
 
 Hierzu wird zum Beispiel die Temperaturschwankung über einen Tag als Cosinusfunktion mit einer Schwankung von \SI{5}{\degreeCelsius} angenommen.
-$$ \textit{Schätzung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temperatur des Tages}; $$
+$$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temperatur des Tages}; $$
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.3cm,y=0.5cm]
 \draw[->,color=black] (0.,13.) -- (0.,27.);
 \draw[color=black] (0.3,27) node [anchor=west] {Temperatur};
-\foreach \y in {14.,16.,18.,20.,22.,24.,26}
+\foreach \y in {14,16,18,20,22,24,26}
 \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
 
 \draw[color=black] (28,18) node [anchor=east] {Stunden};
 \draw[->,color=black] (-2.,17.) -- (25.,17.);
-\foreach \x in {,5.,10.,15.,20.}
+\foreach \x in {,5,10,15,20}
 \draw[shift={(\x,17)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
 
 \clip(-2.,13.) rectangle (25.,27.);
 \draw[smooth,samples=100,domain=-2.0:25.0] plot(\x,{0-5.0*cos(((\x)*2.0*3.1415926535/24.0)*180/pi)+20.0});
 \end{tikzpicture}
-\caption{Graph der Funktion (eigenes Werk)}
+\caption{Graph der Funktion bei mittlere Temp. = \SI{20}{\degreeCelsius} (eigenes Werk)}
 \end{figure}
 
 
@@ -136,7 +136,7 @@ Der Wetterrater gibt drei Werte aus:
 \end{itemize}
 Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wettericons}) ausgewählt, welche dann angezeigt wird.
 
-\begin{figure}[h]
+\begin{figure}[htb]
   \centering
      \includegraphics[width=\textwidth]{figures/wettericons.png}
   \caption{Wettericons (eigenes Werk)}
