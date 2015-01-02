@@ -99,7 +99,7 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
   \label{fig:display_neu}
 \end{figure}
 
-Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden. Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Browser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
+Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und grafisch eranschaulicht werden. Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Browser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
 
 \subsubsection{Wetterrater}
 \label{subsubsec:Wetterrater}
@@ -145,25 +145,42 @@ Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wette
 
 \subsection{Diagramme}
 \label{subsec:Diagramme}
+
+\begin{figure}[h]
+  \centering
+     \makebox[\textwidth][c]{\includegraphics[width=1.35\textwidth]{figures/dygraphs_ipad.png}}
+  \caption{Webinterface auf einem Tablet (eigenes Werk)}
+  \label{fig:dygraphs_tablet}
+\end{figure}
+
 \begin{figure}[h]
   \centering
      \includegraphics[width=\textwidth]{figures/dygraphs.png}
-  \caption{Diagramm (eigenes Werk)}
+  \caption{Webinterface (von \href{http://winkler.kremszeile.at/dygraphs_außen.html}{winkler.kremszeile.at/dygraphs\_außen.html})}
   \label{fig:dygraphs}
 \end{figure}
 Damit auch die vergangenen Messergebnisse angesehen werden können, werden diese im Webinterface auf einer eigenen Seite als Diagramm dargestellt. Diese werden mithilfe von \emph{dygraphs}\footcite{dygraphs}, einer \gls{Javascript}-Bibliothek für interaktive Diagramme, erstellt.\footnote{\href{http://winkler.kremszeile.at/dygraphs_au\%C3\%9Fen.html}{winkler.kremszeile.at/dygraphs\_außen.html}}
 
-Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei  \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können einfach einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist auch darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
+Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können einfach einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist auch darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
 Auf Youtube gibt es ein Video, wo man die Verwendung in Aktion sehen kann: \href{https://www.youtube.com/watch?v=1bv6CEXuN5c}{www.youtube.com/watch?v=1bv6CEXuN5c}
-\begin{figure}
-  \centering
-     \makebox[\textwidth][c]{\includegraphics[width=1.35\textwidth]{figures/dygraphs_ipad.png}}
-  \caption{Diagramm am Tablet (eigenes Werk)}
-  \label{fig:dygraphs_tablet}
-\end{figure}
 
 \section{Endauswertung}
 \label{sec:Endauswertung}
+
+Unabhängig vom Webinterface habe ich ein zweites Programm in \gls{Python} geschrieben. Dieses kann die fertige \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) einlesen und verschiedene mathematischen Auswertungen über einen beliebigen Zeitraum erstellen.
+
+Zunächst wird die Datei in zwei Dateien aufgespalten. Die eine enthält nur die erste Spalte mit den Zeitstempeln jeder Messung, die andere die Messergebnisse. Da schon wenige Messfehler (zum Beispiel einmalig \SI{6}{\degreeCelsius} bei \SI{20}{\degreeCelsius} Außentemperatur) den Mittelwert (und die Standardabweichung) stark verändern, wird zunächst nach Ausreißern gesucht. Hierzu für jeden Messwert überprüft, ob er um mehr als \SI{10}{\degreeCelsius} von dem vorherigen \emph{und} dem folgenden abweicht. Wenn dem so ist, wird eine Meldung ausgegeben:
+
+\code{ausgabe.txt}{,morekeywords={Spalte,Zeile}}{5}{8}
+
+Als nächstes kann man den Zeitraum angeben, für den die Auswertung erstellt werden soll. Hierbei wird überprüft, ob das eingegebene Datum gültig ist. Das Programm testet dann, welche Zeilen der Eingabedatei in diesem Zeitraum liegen.
+
+\code{ausgabe.txt}{}{22}{28}
+
+Nun werden für jede Spalte bzw. für jeden Sensor der Mittelwert, das Minimum, das Maximum und die Standardabweichung berechnet und ausgegeben:
+
+\code{ausgabe.txt}{}{29}{59}
+
 
 \section{diverses}
 \label{sec:diverses}
