@@ -23,12 +23,6 @@
 %% and right pages (twoside) or you create a document which is printed
 %% on right pages only (oneside).
 
-\newcommand{\mydraft}{false}
-%% "true" or "false"
-%% Use draft mode? If true, included graphics are replaced by empty
-%% rectangles (of same size) and overfull boxes (in margin space) are
-%% marked with black box (-> easy to spot!)
-
 \newcommand{\myparskip}{half}
 %% e.g., "no", "full", "half", ...
 %% How to separate paragraphs: indention ("no") or spacing ("half",
@@ -242,6 +236,10 @@
 
 \hyphenpenalty=3000 % weniger Wort-Trennungen
 \tolerance=1000
+
+\clubpenalty=1000
+\widowpenalty=1000
+\displaywidowpenalty=1000
 
 
 %% ========================================================================

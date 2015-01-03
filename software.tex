@@ -101,10 +101,10 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
 
 Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und grafisch eranschaulicht werden. Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Browser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
 
-\subsubsection{Wetterrater}
+\subsubsection{Wetter-Rater}
 \label{subsubsec:Wetterrater}
 
-Um die Daten auch anders zu nutzen habe ich einen \emph{Wetterrater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
+Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
 
 Hierzu wird zum Beispiel die Temperaturschwankung über einen Tag als Cosinusfunktion mit einer Schwankung von \SI{5}{\degreeCelsius} angenommen.
 $$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temperatur des Tages}; $$
@@ -128,7 +128,7 @@ $$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 
 \end{figure}
 
 
-Der Wetterrater gibt drei Werte aus:
+Der Wetter-Rater gibt drei Werte aus:
 \begin{itemize}
 	\item Tag oder Nacht
 	\item Niederschlag (keiner/Gewitter/Schnee/Regen/Schneeregen)
@@ -181,16 +181,44 @@ Nun werden für jede Spalte bzw. für jeden Sensor der Mittelwert, das Minimum, 
 
 \code{ausgabe.txt}{}{29}{59}
 
-
 \section{diverses}
 \label{sec:diverses}
 
-\subsection{autostart}
-\label{subsec:autostart}
-
-\subsection{mitternacht.sh}
-\label{subsec:mitternacht.sh}
-\todo{eventuell entfernen}
+Abgesehen von den großen Teilen gibt es auch einige kleinere Aspekte, von denen ich nun einige vorstellen möchte:
 
 \subsection{Weather Underground}
 \label{subsec:wunderground}
+
+\emph{Weather Underground} ist ein Online-Wetterdienst mit Firmensitz in San Francisco.\footcite{wiki:wunderground} Dieser bietet auch die Möglichkeit eine eigene Wetterstation zu betreiben und die Daten auf ihrer Webseite anzuzeigen.\footnote{\href{http://www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}{www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}}
+Leider werden die Wetterdaten nur in imperialen Einheiten (also \si{\degree F} und \si{\mmHg}\footnote{Millimeter-Quecksilbersäule oder Torr}) akzeptiert. Daher werden die Messwerte vorher von einem \gls{Python}-Programm umgerechnet und anschließend hochgeladen.
+
+\subsection{Autostart}
+\label{subsec:Autostart}
+
+Damit die Umweltdatenmessung einfacher zu handhaben ist, gibt es ein einfaches Start-/Stop-Skript. So werden die Aufzeichnung und das Display automatisch beim Hochfahren gestartet und vor dem Herunterfahren ordnungsgemäß beendet.
+
+\subsection{mitternacht.sh}
+\label{subsec:mitternacht.sh}
+
+Da der Raspberry Pi in der Schule hängt und nicht von außerhalb erreicht werden kann, ist es schwierig Softwareänderungen anzuwenden. Daher habe ich das kleine Skript \emph{mitternacht.sh} geschrieben. Dieses startet täglich um 0:00 Uhr und lädt die neuerste Version von \gls{Github} und installiert diese. Zusätzlich werden auch das Betriebssystem und alle installierten Programme aktualisiert. Anschließend werde ich per Push-Benachrichtigung über etwaige Probleme benachrichtigt und der Raspberry Pi startet neu.
+
+\subsection{sonstiges}
+\label{subsec:sonstiges}
+
+\begin{itemize}
+	\item ein Logo (siehe Abbildung \ref{fig:logo})
+	\item Erstellung von statischen Diagrammen mit Gnuplot
+	\begin{itemize}
+		\item Jedoch bei zu vielen Daten unübersichtlich und langsam
+	\end{itemize}
+	\item Windows Vista/7 Gadget
+	\item E-Mail und Push-Benachrichtigungen
+	\item regelmäßiger Upload der Daten auf \href{http://winkler.kremszeile.at}{winkler.kremszeile.at}
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=0.5\textwidth]{figures/logo.png}
+  \caption{Logo (eigenes Werk)}
+  \label{fig:logo}
+\end{figure}

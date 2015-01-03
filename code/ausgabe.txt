@@ -1,0 +1,62 @@
+in Spalte 5 Zeile 6828 ist ein Ausreisser (7.5)
+in Spalte 5 Zeile 43508 ist ein Ausreisser (25.5)
+in Spalte 5 Zeile 43515 ist ein Ausreisser (25.5)
+in Spalte 5 Zeile 43629 ist ein Ausreisser (25.5)
+in Spalte 5 Zeile 43636 ist ein Ausreisser (25.5)
+in Spalte 6 Zeile 6828 ist ein Ausreisser (5.0)
+in Spalte 6 Zeile 30728 ist ein Ausreisser (87.2)
+in Spalte 10 Zeile 885 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 891 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 919 ist ein Ausreisser (2000.0)
+in Spalte 10 Zeile 2399 ist ein Ausreisser (5900.0)
+in Spalte 10 Zeile 2402 ist ein Ausreisser (5968.0)
+in Spalte 10 Zeile 2407 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 2408 ist ein Ausreisser (5952.0)
+in Spalte 10 Zeile 2416 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 3321 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 5917 ist ein Ausreisser (0.0)
+in Spalte 10 Zeile 27470 ist ein Ausreisser (5191.0)
+in Spalte 10 Zeile 27873 ist ein Ausreisser (5780.0)
+in Spalte 10 Zeile 31148 ist ein Ausreisser (3487.0)
+in Spalte 10 Zeile 40646 ist ein Ausreisser (5961.0)
+Bitte Datum im Format 'DD.MM.YY HH:MM:SS' eingeben
+Es sollte zwischen 22.02.14 10:24:30 und 13.03.14 14:54:50 liegen
+von: 22.02.14 10:30:00
+bis: 30.02.14 00:00:00
+Bitte Datum im Format 'DD.MM.YY HH:MM:SS' eingeben
+bis: 13.03.14 14:00:00
+Der Messwert geht von Zeile 14 bis Zeile 50353 und über folgenden Zeitraum: 19 days, 3:30:00
+------Mittelwerte------
+Innentemperatur:	24.40
+Gerätetemperatur 1:	26.34
+Außentemperatur:	9.38
+Gerätetemperatur 2:	26.34
+Temperatur (Luft):	11.18
+Luftfeuchtigkeit:	50.90
+Luftdruck	:	989.33
+Temperatur (Druck):	11.31
+Prozessor	:	51.92
+Qualität	:	2154.99
+------Minimum-Maximum------
+Innentemperatur:	17.187	26.437
+Gerätetemperatur 1:	19.687	30.5
+Außentemperatur:	0.687	32.687
+Gerätetemperatur 2:	19.687	30.5
+Temperatur (Luft):	1.1	25.5
+Luftfeuchtigkeit:	0.0	89.5
+Luftdruck	:	966.99	1005.38
+Temperatur (Druck):	1.2	24.4
+Prozessor	:	32.0	57.8
+Qualität	:	0.0	6001.0
+------Standardabweichung------
+Innentemperatur:	0.90
+Gerätetemperatur 1:	0.94
+Außentemperatur:	6.33
+Gerätetemperatur 2:	0.94
+Temperatur (Luft):	6.55
+Luftfeuchtigkeit:	19.34
+Luftdruck	:	11.31
+Temperatur (Druck):	6.48
+Prozessor	:	1.58
+Qualität	:	1245.77
+
