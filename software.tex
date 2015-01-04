@@ -11,7 +11,7 @@ Die Software, die verwendet wird, teilt sich in (?\todo{Anzahl hinzufügen}) Tei
 \section{main.sh}
 \label{sec:main.sh}
 
-Das wichtigste Programm ist das Bash-Script \textit{main.sh}. Mithilfe eines Bash-Scriptes können Programme automatisiert gestartet und ihre Ausgaben ausgewertet werden. Dieses Bash- Script kümmert sich um die Aufzeichnung und Speicherung der Daten und die Steuerung der anderen Programme. 
+Das wichtigste Programm ist das \gls{Bash}-Script \textit{main.sh}. Mithilfe eines solchen können Programme gesteuert und ihre Ausgaben verarbeitet werden. Dieses Script kümmert sich um die Aufzeichnung und Speicherung der Daten und die Steuerung der anderen Programme. 
 
 \subsection{Allgemeines}
 \label{subsec:main.sh/allgemeines}
@@ -42,7 +42,7 @@ In den folgenden drei Zeilen wird der aktuelle Zeitpunkt in drei verschiedenen F
 \subsection{Messung}
 \label{subsec:main.sh/messung}
 
-Als erstes werden die Sensoren ausgelesen. Am einfachsten kann mit dem im Raspberry Pi integrierten Thermometer die \acrshort{cpu}-Temperatur ausgelesen werden:
+Als erstes werden die Sensoren ausgelesen. Am einfachsten kann mit dem im Raspberry Pi integrierten Thermometer die \gls{CPU}-Temperatur ausgelesen werden:
 \codeline{main.sh}{bash}{32}
 
 Nur wenig aufwändiger sind die Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
@@ -92,7 +92,7 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
 \subsection{Livedaten}
 \label{subsec:Livedaten}
 
-\begin{figure}[h]
+\begin{figure}
   \centering
      \includegraphics[width=\textwidth]{figures/aktuell.png}
   \caption{Livedaten (Screenshot von \href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html})}
@@ -107,7 +107,7 @@ Auf der Webseite des Raspberry Pi können die aktuellen Messwerte angezeigt und 
 Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
 
 Hierzu wird zum Beispiel die Temperaturschwankung über einen Tag als Cosinusfunktion mit einer Schwankung von \SI{5}{\degreeCelsius} angenommen.
-$$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temperatur des Tages}; $$
+$$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temp. des Tages}; $$
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.3cm,y=0.5cm]
@@ -136,7 +136,7 @@ Der Wetter-Rater gibt drei Werte aus:
 \end{itemize}
 Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wettericons}) ausgewählt, welche dann angezeigt wird.
 
-\begin{figure}[htb]
+\begin{figure}
   \centering
      \includegraphics[width=\textwidth]{figures/wettericons.png}
   \caption{Wettericons (eigenes Werk)}

@@ -4,7 +4,12 @@
   description={\textit{Comma-separated values}\newline Hierbei werden Messungen in einer Textdatei durch Zeilenumbrüche und einzelne Werte durch Beistriche getrennt}
 }
 
-\newacronym{cpu}{CPU}{Central Processing Unit}
+\newglossaryentry{CPU}
+{
+  name=CPU,
+  description={\textit{Central Processing Unit}\newline
+  	der Hauptprozessor}
+}
 
 \newglossaryentry{Ampere}
 {
@@ -15,7 +20,7 @@
 \newglossaryentry{Hertz}
 {
   name=Hertz,
-  description={die SI-Basiseinheit für die Frequenz\newline Sie gibt die Wiederholungen pro Sekunden an (hier: Schwingungen pro Sekunde}
+  description={die SI-Basiseinheit für die Frequenz\newline Sie gibt die Wiederholungen pro Sekunden an (hier: Wechsel zwischen \emph{Strom} und \emph{kein Strom} in der \gls{CPU} pro Sekunde}
 }
 
 \newglossaryentry{Volt}
@@ -27,13 +32,13 @@
 \newglossaryentry{gpio}
 {
   name=GPIO,
-  description={General Purpose Input/Output\newline Kontakte, die Softwareseitig für verschiedene Zwecke angesteuert werden können\newline \zB: Auslesen von Sensoren, Ansteuern von Displays}
+  description={\emph{General Purpose Input/Output}\newline Kontakte auf der Platine, die softwareseitig für verschiedene Zwecke angesteuert werden können\newline \zB: Auslesen von Sensoren, Ansteuern von Displays}
 }
 
 \newglossaryentry{Kernelmodul}
 {
   name=Kernelmodul,
-  description={ein Programm, welches in das Betriebssystem geladen werden kann und oft zur Unterstützung von Hardware verwendet wird}
+  description={ein Programm, welches in das Betriebssystem geladen werden kann und oft zur Kommunikation mit Hardware verwendet wird}
 }
 
 \newglossaryentry{1-Wire}
@@ -46,7 +51,7 @@
 \newglossaryentry{Ohm}
 {
   sort=Ohm,
-  description={\textit{Ohm ist die abgeleitete SI-Einheit des elektrischen Widerstands}\footcite{wiki_ohm}},
+  description={Das Ohm \emph{ist die abgeleitete SI-Einheit des elektrischen Widerstands}\footcite{wiki:ohm}},
   name={\ensuremath{\Omega}}
 }
 
@@ -66,7 +71,7 @@
 \newglossaryentry{Bus}
 {
   name=Datenbus,
-  description={\textit{ein System zur Datenübertragung zwischen mehreren Teilnehmern über einen gemeinsamen Übertragungsweg, bei dem die Teilnehmer nicht an der Datenübertragung zwischen anderen Teilnehmern beteiligt sind.}\footcite{wiki:bus}}
+  description={\emph{System zur Datenübertragung zwischen mehreren Teilnehmern über einen gemeinsamen Übertragungsweg, bei dem die Teilnehmer nicht an der Datenübertragung zwischen anderen Teilnehmern beteiligt sind.}\footcite{wiki:bus}}
 }
 \newglossaryentry{I2C}
 {
@@ -99,3 +104,28 @@
   name=Python,
   description={ist eine 1991 entwickelte Programmiersprache, deren Fokus auf Programmlesbarkeit liegt.\footcite{python}\footcite{python_manual}{}}
 }
+
+\newglossaryentry{Bash}
+{
+  name=Bash,
+  description={\textit{Bourne-again shell}\newline ist die heute unter Linux am häufigsten verwendete \gls{Shell}}
+}
+
+\newglossaryentry{Shell}
+{
+  name=Shell,
+  description={ist eine Schnittstelle, über die der Benutzer Kommandos an den Computer schicken kann}
+}
+
+\newglossaryentry{Einplatinencomputer}
+{
+  name=Einplatinencomputer,
+  description={ein vollständiges Computersystem, welches auf einer einzelnen Platine zusammengefasst ist}
+}
+
+\newglossaryentry{a}
+{
+  name=Einplatinencomputer,
+  description={ein vollständiges Computersystem, welches auf einer einzelnen Platine zusammengefasst ist}
+}
+

@@ -4,7 +4,7 @@
 \todo{Einleitung}
 \section{Der Raspberry Pi}
 \label{sec:Raspberry}
-Der \emph{Raspberry Pi} ist ein Einplatinencomputer, der 2012 von der \emph{Raspberry Pi Foundation} auf den Markt gebracht wurde.
+Der \emph{Raspberry Pi} ist ein \gls{Einplatinencomputer}, der 2012 von der \emph{Raspberry Pi Foundation} auf den Markt gebracht wurde.
 
 \begin{figure}[h]
   \centering
@@ -24,7 +24,7 @@ Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{ver
 
 \subsection{Technische Daten}
 \label{subsec:Technische Daten}
-Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \acrshort{cpu} mit \SI{700}{\glslink{Hertz}{\mega\hertz}}, welche auf bis zu \SI{1}{\glslink{Hertz}{\giga\hertz}} übertaktbar ist, und je nach Modell \SI{256}{} oder \SI{512}{\mega\byte} Arbeitsspeicher. Als Speicher für das Betriebssystem (verschiedene Linux-Distributionen stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
+Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \gls{CPU} mit \SI{700}{\glslink{Hertz}{\mega\hertz}}, welche auf bis zu \SI{1}{\glslink{Hertz}{\giga\hertz}} übertaktbar ist, und je nach Modell \SI{256}{} oder \SI{512}{\mega\byte} Arbeitsspeicher. Als Speicher für das Betriebssystem (verschiedene Linux-Distributionen stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
 
 Zur Stromversorgung genügt ein normales Handyladegerät mit Micro-USB-Anschluss und mindestens \SI{1}{\gls{Ampere}} Stromstärke, denn der Raspberry Pi verbaucht nur \SI{3.5}{Watt}\footcite{strom} (Modell B).
 
@@ -53,7 +53,7 @@ Mithilfe von 4 Sensoren des Typs \emph{DS18B20} werden die Innentemperatur, die 
   \label{fig:temp_pin}
 \end{figure}
 
-Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abb. \ref{fig:temp_pin})
+Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abbildung \ref{fig:temp_pin})
 Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
 
 Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
@@ -78,7 +78,7 @@ Wie der \emph{DS18B20} (\ref{subsec:Temperatur}) benötigt der Luftfeuchtigkeits
   \label{fig:steckbrett}
 \end{figure}
 
-Die Daten des Sensors werden von einem \gls{C}-Programm von Adafruit ausgelesen.
+Die Daten des Sensors werden von einem \gls{C}-Programm von \emph{Adafruit} ausgelesen.
 \footcite[Software Install]{DHT}
 
 \subsection{Luftdruck}
@@ -86,11 +86,11 @@ Die Daten des Sensors werden von einem \gls{C}-Programm von Adafruit ausgelesen.
 
 Der \emph{BMP085} ist der präziseste Sensor. Er wird zum Messen des Luftdruckes und der Außentemperatur verwendet und hat dabei eine Genauigkeit von \SI{\pm 1.0}{\hecto\glslink{Pascal}{\pascal}} und \SI{0.5}{\degreeCelsius} bei \SI{25}{\degreeCelsius}\footcite[6]{BMP085}
 
-Die Messdaten überträgt der Sensor über einen \gls{I2C}-\glslink{Bus}{Bus}. Dabei werden (zusätzlich zur Stromversorgung) \textbf{zwei} Kabel zur Datenübertragung benötigt.
+Die Messdaten überträgt der Sensor über einen \gls{I2C}-\glslink{Bus}{Bus}. Dabei werden (zusätzlich zur Stromversorgung) \emph{zwei} Kabel zur Datenübertragung benötigt.
 Über eines (in Abbildung \ref{fig:steckbrett} gelb) schickt der Raspberry Pi dem Sensor die Taktfrequenz, in der er die Daten übertragen soll, und im anderen (grün) werden die eigentlichen Daten übertragen.
 \footcite[Hooking Everything Up]{bmp058_adafruit}
 
-Auch hier werden die Daten von einem Programm von Adafruit ausgelesen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
+Auch hier werden die Daten von einem Programm von \emph{Adafruit} ausgelesen. \footcite[Using the Adafruit BMP Python Library (Updated)]{bmp058_adafruit}
 
 \subsection{Luftqualität}
 \label{subsec:Luftqualitat}
