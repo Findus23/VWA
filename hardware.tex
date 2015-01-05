@@ -56,7 +56,7 @@ Mithilfe von 4 Sensoren des Typs \emph{DS18B20} werden die Innentemperatur, die 
 Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abbildung \ref{fig:temp_pin})
 Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
 
-Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine virtuelle Datei ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine \gls{Geraetedatei} ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
 
 \begin{figure}[h]
   \centering
@@ -106,7 +106,7 @@ Da der \emph{VOLTCRAFT CO-20} jedoch nicht mehr erhältlich ist, verwende ich de
   \label{fig:velux}
 \end{figure}
 
-Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird das Programm \emph{usb-sensors-linux} verwendet.\footcite{usb-sensors-linux}
+Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter Linux auszulesen, wird das Programm \emph{usb-sensors-linux}\footcite{usb-sensors-linux} verwendet.
 
 \section{Display}
 \label{sec:Display}
@@ -114,15 +114,35 @@ Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter 
 \begin{figure}[h]
   \centering
      \includegraphics[width=0.9\textwidth]{figures/erstes_display.jpg}
-  \caption{Erstes Display (eigenes Werk)}
+  \caption{Das erste Display (eigenes Werk)}
   \label{fig:erstes_display}
 \end{figure}
 
-Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen Display von \emph{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
-Dieses wird nach der Anleitung von \emph{www.schnatterente.net}\footcite{schnatterente} angeschlossen.
+Damit nicht immer ein Computer benötigt wird, um die aktuellen Messwerte zu erfahren, verwende ich ein Display, welches diese anzeigt. Ursprünglich habe ich ein 16x2 Zeichen \gls{LC-Display} von \emph{Conrad Electronic} verwendet.\footcite{conrad_datenblatt}
+Dieses wird nach der Anleitung von \emph{schnatterente.net}\footcite{schnatterente} angeschlossen.
 
 Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \emph{Pollin.de}\footcite{display_pollin} umgestiegen, welches mit einer Steckverbindung angeschlossen wird.
 
 \section{Anschluss}
 \label{sec:Anschluss}
 \todo[inline]{Kapitel über Gehäuse, Platinen, Zusammenbau}
+Anfangs wurde sämtliche Hardware auf einem \gls{Steckbrett} aufgesteckt und mit einzelnen Kabeln verbunden. Dies ist sehr praktisch für schnelle Versuche und häufige Änderungen, ist aber sehr unstabil und nicht transportabel.
+
+\begin{figure}[h]
+	\begin{minipage}[b]{0.33\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/1_1.jpg}
+		\caption{\emph{DS18B20} (\ref{subsec:Temperatur})}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.33\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/1_2.jpg}
+		\caption{Steckbrett mit Display (\ref{sec:Display})}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.33\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/1_3.jpg}
+		\caption{erste mehrwöchige Messung}
+	\end{minipage}
+
+\end{figure}

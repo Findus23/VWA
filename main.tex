@@ -96,7 +96,7 @@
 %% e.g., "" (empty), "disable", ...
 %% Options for the todonotes-package. If "disable", all todonotes will
 %% be hidden (including listoftodos).
-
+\RequirePackage[l2tabu, orthodox]{nag} %% EIGENE ÄNDERUNG
 %% Load main settings for document preamble:
 \input{template/preamble}%% DO NOT REMOVE THIS LINE!
 
@@ -309,6 +309,7 @@
 
 \include{hardware}
 \include{software}
+\include{auswertung}
 \appendix                       %% closes main document, appendix follows until end; only available in book-classes
 %\addpart*{Anhang}             %% adding Appendix to tableofcontents
 \include{weitere_informationen}
