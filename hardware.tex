@@ -113,7 +113,7 @@ Der Sensor wird über USB an den Raspberry Pi angeschlossen. Um die Daten unter 
 
 \begin{figure}[h]
   \centering
-     \includegraphics[width=0.9\textwidth]{figures/erstes_display.jpg}
+     \includegraphics[width=\textwidth]{figures/erstes_display.jpg}
   \caption{Das erste Display (eigenes Werk)}
   \label{fig:erstes_display}
 \end{figure}
@@ -125,24 +125,66 @@ Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \em
 
 \section{Anschluss}
 \label{sec:Anschluss}
-\todo[inline]{Kapitel über Gehäuse, Platinen, Zusammenbau}
-Anfangs wurde sämtliche Hardware auf einem \gls{Steckbrett} aufgesteckt und mit einzelnen Kabeln verbunden. Dies ist sehr praktisch für schnelle Versuche und häufige Änderungen, ist aber sehr unstabil und nicht transportabel.
-
 \begin{figure}[h]
-	\begin{minipage}[b]{0.33\textwidth}
+	\begin{minipage}[b]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/anschluss/1_1.jpg}
 		\caption{\emph{DS18B20} (\ref{subsec:Temperatur})}
 	\end{minipage}\hfill
-	\begin{minipage}[b]{0.33\textwidth}
+	\begin{minipage}[b]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/anschluss/1_2.jpg}
-		\caption{Steckbrett mit Display (\ref{sec:Display})}
+		\caption{\gls{Steckbrett} mit Display (\ref{sec:Display})}
 	\end{minipage}\hfill
-	\begin{minipage}[b]{0.33\textwidth}
+	\begin{minipage}[b]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/anschluss/1_3.jpg}
 		\caption{erste mehrwöchige Messung}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/1_4.jpg}
+		\caption{neue Sensoren auf dem \gls{Steckbrett}}
 	\end{minipage}
+\end{figure}
+Anfangs wurde sämtliche Hardware auf einem \gls{Steckbrett} aufgesteckt und mit einzelnen Kabeln verbunden. Dies ist sehr praktisch für schnelle Versuche und häufige Änderungen, ist aber sehr unstabil und nicht transportabel.
 
+Daher wurden alle Sensoren auf \glspl{Streifenplatine} gelötet, welche mit Steckverbindungen und Kabeln miteinander verbunden werden.
+
+\begin{figure}[h]
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/2_1.jpg}
+		\caption{Außensensoren}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/2_2.jpg}
+		\caption{Innensensoren}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/2_3.jpg}
+		\caption{Steckverbindung am Display}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/anschluss/2_4.jpg}
+		\caption{Hauptplatine}
+	\end{minipage}
+\end{figure}
+
+Die komplette Hardware kommt nun in eine Holzbox, mit einer Öffnung für das Display und die \glspl{LED} auf der Vorderseite. Zusätzlich gibt es am rechten Rand eine Öffnung für die USB-Anschlüsse und zwei Steckverbindungen für die Außensensoren. Am linken Rand ist eine kleiner Spalt für die Stromversorgung.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/anschluss/2_5.jpg}
+	\caption{Komplette Hardware}
+\end{figure}	
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=0.75\textwidth]{figures/anschluss/3.jpg}
+  \caption{Die Hardware in der Holzbox}
+  \label{fig:erstes_display}
 \end{figure}

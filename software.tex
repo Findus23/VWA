@@ -79,7 +79,7 @@ Um die aktuellen Messungen auch ohne Computer zu sehen, werden sie auch direkt a
 Das Programm liest aus \emph{text.txt} (siehe Datei \ref{file:text.txt}) die aktuellen Messwerte aus. Da der Platz jedoch stark beschränkt ist, werden diese auf 11 Seiten aufgeteilt, zwischen denen das Display alle 3 Sekunden wechselt.
 \begin{figure}[h]
   \centering
-     \includegraphics[width=0.9\textwidth]{figures/display.jpg}
+     \includegraphics[width=\textwidth]{figures/display.jpg}
   \caption{eingebautes Display (eigenes Werk)}
   \label{fig:display_alt}
 \end{figure}
@@ -87,7 +87,7 @@ Das Programm liest aus \emph{text.txt} (siehe Datei \ref{file:text.txt}) die akt
 \section{Webinterface}
 \label{sec:Webinterface}
 
-Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese kann live auf der Webseite des Raspberry Pi und zeitverzögert unter \href{http://winkler.kremszeile.at}{winkler.kremszeile.at} angesehen werden. Die Auswertung besteht aus zwei von einander unabhängigen Teilen. Zum einen gibt es die Anzeige der Live-Daten, zum anderen die Darstellung der kompletten Aufzeichnung als interaktives Diagramm. Zusätzlich werden auf zwei zusätzlichen Seiten Informationen über das Projekt und Links zu mehr Informationen (siehe Anhang \ref{anhang:weitere_informationen} angezeigt.
+Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese kann live auf der Webseite des Raspberry Pi und zeitverzögert unter \href{http://winkler.kremszeile.at}{winkler.kremszeile.at} angesehen werden. Die Auswertung besteht aus zwei von einander unabhängigen Teilen. Zum einen gibt es die Anzeige der Live-Daten, zum anderen die Darstellung der kompletten Aufzeichnung als interaktives Diagramm. Zusätzlich werden auf zwei zusätzlichen Seiten Informationen über das Projekt und Links zu anderen Projektseiten von mir (siehe Anhang \ref{anhang:weitere_informationen} angezeigt.
 
 \subsection{Livedaten}
 \label{subsec:Livedaten}
@@ -96,7 +96,7 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
   \centering
      \includegraphics[width=\textwidth]{figures/aktuell.png}
   \caption{Livedaten (Screenshot von \href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html})}
-  \label{fig:display_neu}
+  \label{fig:livedaten}
 \end{figure}
 
 Auf Webinterface können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden.\footnote{\href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html}}
@@ -162,7 +162,7 @@ Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wette
 \end{figure}
 Damit auch die vergangenen Messergebnisse angesehen werden können, werden diese im Webinterface auf einer eigenen Seite als Diagramm dargestellt. Diese werden mithilfe von \emph{dygraphs}\footcite{dygraphs}, einer \gls{Javascript}-Bibliothek für interaktive Diagramme, erstellt.\footnote{\href{http://winkler.kremszeile.at/dygraphs_au\%C3\%9Fen.html}{winkler.kremszeile.at/dygraphs\_außen.html}}
 
-Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können einfach einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
+Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können auch einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
 Auf Youtube gibt es ein Video, wo man die Verwendung in Aktion sehen kann: \href{https://www.youtube.com/watch?v=1bv6CEXuN5c}{www.youtube.com/watch?v=1bv6CEXuN5c}
 
 \section{Endauswertung}
@@ -185,7 +185,7 @@ Nun werden für jede Spalte bzw. für jeden Sensor der Mittelwert, das Minimum, 
 \section{diverses}
 \label{sec:diverses}
 
-Abgesehen von den großen Teilen des Projektes gibt es auch einige kleinere Aspekte, von denen ich nun einige vorstellen möchte:
+Abgesehen von den großen Teilen des Projektes gibt es auch kleinere Aspekte, von denen ich nun einige vorstellen möchte:
 
 \subsection{Weather Underground}
 \label{subsec:wunderground}
