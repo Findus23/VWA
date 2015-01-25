@@ -12,13 +12,38 @@ Zu Beginn des Schuljahrs 2014/15 habe ich meine Messtation am 8.9.2014 in der Kl
 
 Die Messdaten lassen sich sehr einfach auswerten, wenn man sie als Diagramme darstellt (siehe \ref{subsec:Diagramme}). 
 
-So kann man bei den meisten Sensoren tägliche Schwankungen gut erkennen. Am besten sind sie bei der Luftfeuchtigkeit zu erkennen, welche zwischen ca. \SI{60}{\%} (Mittag bis Abend) und \SI{100}{\%.rel.LF} (Mitternacht bis Vormittag) schwankt. (siehe Abbildung \ref{fig:auswertung-aussen}) 
+So kann man bei den meisten Sensoren tägliche Schwankungen gut erkennen. Am besten sind sie bei der Luftfeuchtigkeit zu erkennen, welche zwischen ca. \SI{60}{\%} (Mittag bis Abend) und \SI{100}{\%.rel.LF} (Mitternacht bis Vormittag) schwankt. (siehe Abbildungen \ref{fig:auswertung-aussen} und \ref{fig:auswertung-temperaturen}).
+Da das Klassenzimmer außerhalb des Unterrichts nicht geheizt wird und die Wände des Containers kaum isolieren, schwankt auch die Innentemperatur an Schultagen sehr stark. Verstärkt wird dies dadurch, dass der Temperatursensor auf der Seite des Raumes befestigt war, an dem auch die Fenster und Heizkörper sind. Es ist auch erkennbar, dass es an Wochenenden deutlich kälter im Raum ist, da nicht geheizt wird. 
+Erstaunlich ist jedoch, dass die Temperaturschwankungen sogar an der \gls{CPU}-Temperatur deutlich erkennbar sind. (siehe Abbildung \ref{fig:auswertung-cpu})
+
+Am ungenauesten sind die Ergebnisse des Luftqualitätssensors. Diese enthalten viele Ausreißer und sind im Allgemeinen viel zu hoch. Die Originalsoftware gibt in den Standardeinstellungen bei einem Wert von 1500 die Warnung \enquote{Bad air quality} an. Im Klassenzimmer wurden jedoch häufig Werte über 2000 gemessen. (siehe Abbildung \ref{fig:auswertung-qualitat}) Erkennbar ist jedoch, dass die Luftqualität erwartungsgemäß im Unterricht schlechter wird. 
 
 \begin{figure}[p]
   \centering
      \includegraphics[width=0.95\textheight, angle=90]{figures/auswertung-aussen.png}
   \caption{Außensensoren}
   \label{fig:auswertung-aussen}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+     \includegraphics[width=0.95\textheight, angle=90]{figures/auswertung-temperaturen.png}
+  \caption{Temperatursensoren}
+  \label{fig:auswertung-temperaturen}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=\textwidth]{figures/auswertung-cpu.png}
+  \caption{\gls{CPU}-Temperatur}
+  \label{fig:auswertung-cpu}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+     \includegraphics[width=\textwidth]{figures/auswertung-qualitat.png}
+  \caption{Luftqualität}
+  \label{fig:auswertung-qualitat}
 \end{figure}
 
 \newpage

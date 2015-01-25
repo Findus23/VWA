@@ -221,6 +221,7 @@
 \usepackage[binary-units = true]{siunitx}
 \usepackage{tabulary}
 \newcommand{\zB}{z.\,B.} 
+
 \usepackage[toc,nopostdot,nonumberlist]{glossaries}
 \glsenablehyper
 \input{glossar.tex}
@@ -232,12 +233,13 @@
 \usepackage{pgf,tikz}
 \usetikzlibrary{arrows}
 \usepackage{pdfpages}
-\usepackage[scale=2]{ccicons}
-\usepackage{pdflscape}
-\usepackage{blindtext}
-\usepackage{afterpage}
 
-\hyphenpenalty=3000 % weniger Wort-Trennungen
+\usepackage[scale=2]{ccicons}
+%\usepackage{pdflscape}
+%\usepackage{blindtext}
+%\usepackage{afterpage}
+
+\hyphenpenalty=2000 % weniger Wort-Trennungen
 \tolerance=1000
 
 \clubpenalty=1000
@@ -253,7 +255,7 @@
 
 \newcommand{\myLaT}{\LaTeX{}@TUG\xspace} %% LaTeX@TUG text "logo"
 
-\hyphenation{ex-am-ple hy-phen-ate Gehäuse-temperatur Innen-temperatur Temperatur-sensoren Web-inter-face}  %% in order to use German umlauts
+\hyphenation{ex-am-ple hy-phen-ate Gehäuse-temperatur Innen-temperatur Temperatur-sensoren Web-inter-face }  %% in order to use German umlauts
 %% here (Ver-\"of-fent-li-chung), you have to check for 
 %% activated \usepackage[T1]{fontenc} in the preamble
 
