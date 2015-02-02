@@ -323,10 +323,7 @@
 %\addpart*{Anhang}             %% adding Appendix to tableofcontents
 \include{weitere_informationen}
 \include{praesentationen}
-\printbibheading
-\printbibliography[type=book,heading=subbibliography,title={Literatur}]
-\printbibliography[type=online,heading=subbibliography,title={Online-Literatur}]
-\printbibliography[nottype=online,nottype=book,heading=subbibliography,title={sonstige Literatur}]
+\printbibliography
 
 \listoffigures
 %\listoftables
@@ -337,6 +334,8 @@
 
 
 \newpage
+\thispagestyle{empty}
+
 \section*{Eidesstattliche Erklärung}
 Ich, \myauthor, erkläre hiermit eidesstattlich, dass ich diese
 vorwissenschaftliche Arbeit selbständig und ohne Hilfe Dritter
