@@ -1,5 +1,5 @@
 \chapter{Software}
-Die Software, die verwendet wird, teilt sich in 5 Teile auf:
+Die Software, die verwendet wird, besteht aus 5 Teilen:
 \begin{itemize}
 \item Auslesen der Sensoren, Aufbereiten der Daten und allgemeine Steuerung (\emph{main.sh})
 \item Steuern des Displays
@@ -11,12 +11,12 @@ Die Software, die verwendet wird, teilt sich in 5 Teile auf:
 \section{main.sh}
 \label{sec:main.sh}
 
-Das wichtigste Programm ist das \gls{Bash}-Script \textit{main.sh}. Mithilfe eines solchen können Programme gesteuert und ihre Ausgaben verarbeitet werden. Dieses Script kümmert sich um die Aufzeichnung, erste Verarbeitung und Speicherung der Daten und die Steuerung der anderen Programme. 
+Das wichtigste Programm ist das \gls{Bash}-Script \textit{main.sh}. Mithilfe eines solchen Skripts können Programme gesteuert und ihre Ausgaben verarbeitet werden. Dieses kümmert sich um die Aufzeichnung, erste Verarbeitung und Speicherung der Daten und die Steuerung der anderen Programme. 
 
 \subsection{Allgemeines}
 \label{subsec:main.sh/allgemeines}
 
-Zunächst werden die Pins angegeben, an denen die \gls{LED}s angeschlossen sind. In den Zeilen 11-13 wird nun die grüne \gls{LED} eingeschaltet, um zu zeigen, dass das Programm läuft.
+Zunächst werden die \gls{gpio}-Pins angegeben, an denen die \gls{LED}s angeschlossen sind. In den Zeilen 11-13 wird nun die grüne \gls{LED} eingeschaltet, um zu zeigen, dass das Programm läuft.
 \code{main.sh}{bash}{8}{13}
 
 Nun startet das eigentliche Programm. Alles, was nun folgt wird wiederholt, bis die Aufzeichnung beendet wird.
@@ -52,7 +52,7 @@ Daher muss zunächst mit \emph{grep} und \emph{awk} die Zahl herausgeschnitten w
 Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
 \code{main.sh}{bash}{33}{40}
 
-Die Adafruit-Programme\footcite{DHT}\footcite{bmp058_adafruit}, die den Luftfeuchtesensor (siehe \ref{subsec:Luftfeuchtigkeit}) und den Luftdrucksensor (siehe \ref{subsec:Luftdruck}) auslesen, geben die Feuchtigkeit und die Temperatur durch einen Strichpunkt getrennt an. Daher wird dies zu Beginn als Trennzeichen angegeben. 
+Die Adafruit-Programme\footcite{DHT}$^,$\footcite{bmp058_adafruit}, die den Luftfeuchtesensor (siehe \ref{subsec:Luftfeuchtigkeit}) und den Luftdrucksensor (siehe \ref{subsec:Luftdruck}) auslesen, geben die Feuchtigkeit und die Temperatur durch einen Strichpunkt getrennt an. Daher wird dies zu Beginn als Trennzeichen angegeben. 
 \codeline{main.sh}{bash}{4}
 Dadurch kann die Ausgabe einfach aufgetrennt werden:
 \code{main.sh}{bash}{66}{69}
@@ -63,18 +63,18 @@ Der relative Wert für die Luftqualität wird direkt von \emph{usb-sensors-linux
 
 \subsection{Speichern, Aufbereiten und Verarbeiten}
 
-Nachdem alle Sensoren ausgelesen wurden, müssen sie dauerhaft gespeichert werden. Hierzu werden alle Werte durch ein Komma getrennt und als neue Zeile an die bisherigen Messungen angehängt.
+Nachdem alle Sensoren ausgelesen wurden, müssen die Messwerte dauerhaft gespeichert werden. Hierzu werden alle Werte durch ein Komma getrennt und als neue Zeile an die bisherigen Messungen angehängt.
 \code{main.sh}{bash}{89}{90}
 Hierdurch entsteht eine \gls{CSV}-Datei die wie folgt aussehen kann:
 \dateiklein{dygraphs.csv}
-Diese Datei wird in den Ordner des Webservers kopiert, damit sie grafisch dargestellt werden kann (siehe \ref{subsec:Diagramme}). Weiters verwendet die \textit{Endauswertung} (siehe \ref{sec:Endauswertung}) auch diese Datei zur rechnerischen Auswertung.
+Diese Datei wird in den Ordner des Webservers kopiert, damit sie grafisch dargestellt werden kann (siehe \ref{subsec:Diagramme}). Weiters verwendet die \textit{Endauswertung} (siehe \ref{sec:Endauswertung}) auch diese Datei.
 
 Als nächstes wird der Text für das Display (siehe \ref{sec:Display}) erzeugt. Da dort der Platz beschränkt ist (16x2 Zeichen), werden alle Messwerte um 3 Stellen (bzw. 2 bei Luftdruck) gekürzt. Anschließend werden diese Daten in \emph{text.txt} (für Display) und \emph{text\_ws.txt} (für Webinterface) exportiert.
 \codeline{main.sh}{bash}{92}
 \datei{text.txt}
 \lstinputlisting[style=mystyle,label=textws.txt,caption=text\_ws.txt,basicstyle=\footnotesize]{code/text_ws.txt}
 
-Abschließend wird noch 8 Sekunden gewartet und jedes tausende Mal ein Backup gemacht und mir per E-Mail geschickt, bevor die nächste Messung von vorne beginnt.
+Abschließend wird noch 8 Sekunden gewartet und jedes tausendste Mal ein Backup gemacht und mir per E-Mail geschickt, bevor die nächste Messung von vorne beginnt. Zusätzlich werden die Daten auf \emph{Weather Underground} hochgeladen. (siehe \ref{subsec:wunderground})
 
 \section{Display}
 \label{sec:Software/Display}
@@ -103,13 +103,13 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
   \label{fig:livedaten}
 \end{figure}
 
-Auf Webinterface können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden.\footnote{\href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html}}
+Im Webinterface können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden.\footnote{\href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html}}
 Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Webbrowser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
 
 \subsubsection{Wetter-Rater}
 \label{subsubsec:Wetterrater}
 
-Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
+Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen auf Grundlage der Messungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
 
 Hierzu wird die Temperaturschwankung über einen Tag als Cosinusfunktion mit einer Schwankung von \SI{5}{\degreeCelsius} angenommen.
 $$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temp. des Tages}; $$
@@ -166,13 +166,13 @@ Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wette
 \end{figure}
 Damit auch die vergangenen Messergebnisse angesehen werden können, werden diese im Webinterface auf einer eigenen Seite als Diagramm dargestellt. Diese werden mithilfe von \emph{dygraphs}\footcite{dygraphs}, einer \gls{Javascript}-Bibliothek für interaktive Diagramme, erstellt.\footnote{\href{http://winkler.kremszeile.at/dygraphs_au\%C3\%9Fen.html\#dygraph8A.csv}{winkler.kremszeile.at/dygraphs\_außen.html\#dygraph8A.csv}}
 
-Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können auch einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, können einzelne Kurven aktiviert und deaktiviert werden. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
+Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können auch einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, sind die Kurven einzeln deaktivierbar. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
 Auf Youtube gibt es ein Video, wo man die Verwendung in Aktion sehen kann: \href{https://www.youtube.com/watch?v=1bv6CEXuN5c}{www.youtube.com/watch?v=1bv6CEXuN5c}
 
 \section{Endauswertung}
 \label{sec:Endauswertung}
 
-Unabhängig vom Webinterface habe ich ein zweites Programm in \gls{Python} geschrieben. Dieses kann die fertige \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) einlesen und verschiedene mathematische Auswertungen über einen beliebigen Zeitraum erstellen.
+Unabhängig vom Webinterface habe ich ein Auswertungsprogramm in \gls{Python} geschrieben. Dieses kann die fertige \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) einlesen und verschiedene mathematische Auswertungen über einen beliebigen Zeitraum erstellen.
 
 Zunächst wird die Datei in zwei Dateien aufgespalten. Die eine enthält nur die erste Spalte mit den Zeitstempeln jeder Messung, die andere die Messergebnisse. Da schon wenige Messfehler (zum Beispiel einmalig \SI{6}{\degreeCelsius} bei \SI{20}{\degreeCelsius} Außentemperatur) den Mittelwert (und die \gls{Standardabweichung}) stark verändern, wird zunächst nach Ausreißern gesucht. Hierzu wird für jeden Messwert überprüft, ob er um mehr als \SI{10}{\degreeCelsius} von dem vorherigen \emph{und} dem folgenden abweicht. Wenn dem so ist, wird eine Meldung ausgegeben:
 
@@ -205,7 +205,7 @@ Damit die Umweltdatenmessung einfacher zu handhaben ist, gibt es ein einfaches S
 \subsection{mitternacht.sh}
 \label{subsec:mitternacht.sh}
 
-Da der Raspberry Pi in der Schule hängt und nicht von außerhalb erreicht werden kann, ist es schwierig Softwareänderungen anzuwenden. Daher habe ich das kleine Skript \emph{mitternacht.sh} geschrieben. Dieses startet täglich um 0:00 Uhr und lädt die neuerste Version von \gls{Github} und installiert diese. Zusätzlich werden auch das Betriebssystem und alle installierten Programme aktualisiert. Anschließend werde ich per Push-Benachrichtigung über etwaige Probleme benachrichtigt und der Raspberry Pi startet neu.
+Da der Raspberry Pi in der Schule hängt und nicht von außerhalb erreicht werden kann, ist es schwierig Softwareänderungen anzuwenden. Daher habe ich das kleine Skript \emph{mitternacht.sh} geschrieben. Dieses startet täglich um 0:00 Uhr und lädt die neuerste Version von \gls{Github} herunter und installiert diese. Zusätzlich werden auch das Betriebssystem und alle installierten Programme aktualisiert. Anschließend werde ich per Push-Benachrichtigung über etwaige Probleme benachrichtigt und der Raspberry Pi startet neu.
 
 \subsection{sonstiges}
 \label{subsec:sonstiges}
