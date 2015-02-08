@@ -3,10 +3,15 @@
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[sc,osf]{mathpazo} 
-\usepackage{lipsum}
 \usepackage{nag}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage[]{enumitem}
+\usepackage{multicol}
+
+\setlist{itemsep=-5pt}
+
+
 %% Einstellungen aus Template
 \newcommand{\mycolorlinks}{true}
 \newcommand{\myauthor}{Lukas Winkler}
@@ -17,42 +22,44 @@
 \usepackage{xcolor}
 \definecolor{DispositionColor}{RGB}{30,103,182}
 \input{template/pdf_settings}
-\hyphenpenalty=3000 %test von weniger Trennungen
+\hyphenpenalty=3000 
 \tolerance=1000
 
 \author{\myauthor}
-\title{\mytitle}
+\title{Begleitprotokoll}
+\subtitle{Umweltdatenmessung mit dem Raspberry Pi}
 \begin{document}
 \maketitle
 
 \section{Verlauf -- Kontakt mit Betreuungslehrer}
-
+\begin{multicols}{2}
 \begin{itemize}
+
 	\item Sommerferien 2013:
 	\begin{itemize}
-		\item Ich habe mir einen Raspberry Pi gekauft.
-		\item Während der Sommerferien experimentiere ich, was man damit machen kann.
+		\item kaufen eines \emph{Raspberry Pi}
+		\item experimentieren, testen der Möglichkeiten
 	\end{itemize}
 	\item September/Oktober 2013:
 	\begin{itemize}
-		\item In einer der ersten Informatik-Stunden sollten wir nach Raspberry Pi-Projekten für den Unterricht suchen. So kam ich auf die Idee, eine Wetterstation zu bauen.
-		\item Bis zur nächsten Stunde habe ich ein Programm geschrieben, welches zufällige Datenreihen erstellt und als Diagramm grafisch darstellt.
+		\item eine der ersten Informatik-Stunden: suchen nach Raspberry Pi-Projekten für den Unterricht\newline Idee, eine Wetterstation zu bauen.
+		\item bis zur nächsten Stunde: schreiben eines Programmes, welches zufällige Datenreihen erstellt und als Diagramm grafisch darstellt.
 	\end{itemize}
 	\item 14. Oktober 2013
 	\begin{itemize}
-		\item Ich habe eine Webseite\footnote{\href{http://lukaswiki.onpw.de/rasp/}{lukaswiki.onpw.de/rasp/}} eingerichtet, auf der alle Dateien und Fortschritte protokolliert werden.
+		\item einrichten einer Webseite\footnote{\href{http://lukaswiki.onpw.de/rasp/}{lukaswiki.onpw.de/rasp} (nicht mehr erreichbar, Kopie unter \href{http://winkler.kremszeile.at/rasp/}{winkler.kremszeile.at/rasp})}, auf der alle Dateien und Fortschritte protokolliert werden.
 	\end{itemize}
 	\item 2. November 2013
 	\begin{itemize}
-		\item Erste Teile für die Hardware gekauft (Steckbrett, Verbindungskabel, Temperatursensor)
+		\item erste Teile für die Hardware gekauft (Steckbrett, Verbindungskabel, Temperatursensor)
 	\end{itemize}
 	\item 14. November 2013
 	\begin{itemize}
-		\item Erste erfolgreiche Messung
+		\item erste erfolgreiche Messung
 	\end{itemize}
 	\item 19. November 2013
 	\begin{itemize}
-		\item Erstes Display funktioniert
+		\item erstes Display funktioniert
 	\end{itemize}
 	\item Dezember 2013
 	\begin{itemize}
@@ -64,16 +71,16 @@
 	\end{itemize}
 	\item 27. Dezember 2013
 	\begin{itemize}
-		\item Komplette Projekt ist auf Github\footnote{\href{https://github.com/Findus23/Umweltdatenmessung}{github.com/Findus23/Umweltdatenmessung}} (Versionsverwaltung)
+		\item komplette Projekt ist auf Github\footnote{\href{https://github.com/Findus23/Umweltdatenmessung}{github.com/Findus23/Umweltdatenmessung}} (Versionsverwaltung)
 	\end{itemize}
 	\item 15. Jänner 2014
 	\begin{itemize}
 		\item Besprechung der Einreichung mit dem Betreuungslehrer
-		\item Einreichen der Themenstellung
+		\item einreichen der Themenstellung
 	\end{itemize}
 	\item Jänner 2014
 	\begin{itemize}
-		\item Zusätzliche Sensoren: Luftdruck und Luftfeuchtigkeit
+		\item zusätzliche Sensoren: Luftdruck und Luftfeuchtigkeit
 	\end{itemize}
 	\item Anfang Februar 2014
 	\begin{itemize}
@@ -110,7 +117,7 @@
 	\end{itemize}
 
 \end{itemize}
-
+\end{multicols}
 \begin{figure}[h]
   \centering
      \includegraphics[width=\textwidth]{figures/github_verlauf}
@@ -118,8 +125,6 @@
   \label{fig:github}
 \end{figure}
 
-\section{Hilfsmittel und Hilfestellungen}
-\lipsum[1]
 \section{Länge der Arbeit}
 \begin{table}[h]
 	\centering
