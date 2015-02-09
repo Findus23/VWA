@@ -16,10 +16,10 @@ Das wichtigste Programm ist das \gls{Bash}-Script \textit{main.sh}. Mithilfe ein
 \subsection{Allgemeines}
 \label{subsec:main.sh/allgemeines}
 
-Zunächst werden die \gls{gpio}-Pins angegeben, an denen die \gls{LED}s angeschlossen sind. In den Zeilen 11-13 wird nun die grüne \gls{LED} eingeschaltet, um zu zeigen, dass das Programm läuft.
+Zunächst werden die \gls{gpio}-Pins angegeben, an denen die \gls{LED}s angeschlossen sind. In den Zeilen 11-13 wird nun die grüne \gls{LED} eingeschaltet, um zu zeigen, dass das Programm ordnungsgemäß läuft.
 \code{main.sh}{bash}{8}{13}
 
-Nun startet das eigentliche Programm. Alles, was nun folgt wird wiederholt, bis die Aufzeichnung beendet wird.
+Nun startet das eigentliche Programm. Alles, was nun folgt, wird wiederholt, bis die Aufzeichnung beendet wird.
 \code{main.sh}{bash}{27}{28}
 In den folgenden drei Zeilen wird der aktuelle Zeitpunkt in drei verschiedenen Formaten für drei verschiedene Zwecke gespeichert.
 \begin{table}[h]
@@ -42,7 +42,7 @@ In den folgenden drei Zeilen wird der aktuelle Zeitpunkt in drei verschiedenen F
 \subsection{Messung}
 \label{subsec:main.sh/messung}
 
-Als erstes werden die Sensoren ausgelesen. Am einfachsten kann mit dem im Raspberry Pi integrierten Thermometer die \gls{CPU}-Temperatur ausgelesen werden. Hierzu müssen nur die Zeichen 6-9 (weil die gesamte Ausgabe \emph{temp=45.5'C} lautet) aus einer \gls{Geraetedatei} gelesen werden:
+Als erstes werden die Sensoren ausgelesen. Am einfachsten kann der im \emph{Raspberry Pi} integrierten Thermometer  für die \gls{CPU}-Temperatur ausgelesen werden. Hierzu müssen nur die Zeichen 6-9 (weil die gesamte Ausgabe \emph{temp=45.5'C} lautet) aus einer \gls{Geraetedatei} gelesen werden:
 \codeline{main.sh}{bash}{32}
 
 Nur wenig aufwändiger ist das Auslesen der Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). 
@@ -166,7 +166,7 @@ Aufgrund von diesen Werten wird dann eine Grafik (siehe Abbildung \ref{fig:wette
 \end{figure}
 Damit auch die vergangenen Messergebnisse angesehen werden können, werden diese im Webinterface auf einer eigenen Seite als Diagramm dargestellt. Diese werden mithilfe von \emph{dygraphs}\footcite{dygraphs}, einer \gls{Javascript}-Bibliothek für interaktive Diagramme, erstellt.\footnote{\href{http://winkler.kremszeile.at/dygraphs_au\%C3\%9Fen.html\#dygraph8A.csv}{winkler.kremszeile.at/dygraphs\_außen.html\#dygraph8A.csv}}
 
-Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen kann hier jedoch einfach hineingezoomt werden. So können auch einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, sind die Kurven einzeln deaktivierbar. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
+Hierzu lädt der Webbrowser die komplette Aufzeichnung in Form der Datei \emph{dygraphs.csv} (siehe Datei \ref{file:dygraphs.csv}) nach. Daraus wird ein Diagramm über den gesamten Zeitraum der Messung erstellt. Im Gegensatz zu anderen Darstellungen ist dieses Diagramm nicht statisch, sondern es kann einfach hineingezoomt werden. So können auch einzelne Wochen oder Tage betrachtet werden. Da das Diagramm mit allen 10 Messkurven auf einmal überladen wäre, sind die Kurven einzeln deaktivierbar. Zusätzlich kann ein Faktor eingegeben werden, um den die Kurven automatisch geglättet werden sollen. Mit einem Tastendruck kann man auch auf die letzten 24 Stunden oder 7 Tage zoomen oder in einem Kalender den Zeitraum auswählen. Es gibt auch ein Auswahlmenü, um den gewünschten Datensatz auszuwählen. Das Diagramm ist darauf angepasst, auch mit Tablets bzw. Touchscreens bedient zu werden.
 Auf Youtube gibt es ein Video, wo man die Verwendung in Aktion sehen kann: \href{https://www.youtube.com/watch?v=1bv6CEXuN5c}{www.youtube.com/watch?v=1bv6CEXuN5c}
 
 \section{Endauswertung}

@@ -20,7 +20,7 @@ Ursprünglich war der Raspberry Pi als günstiger Computer gedacht, um britische
 \footcite{aboutraspberry}$^,$
 \footcite[Geschichte]{wiki:raspberry}
 
-Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{verkauf}) und 6 verschiedene Modelle entwickelt. (Bis Februar 2015)
+Aufgrund des günstigen Preises\footnote{je nach Modell zwischen 30 und \SI{40}{\text{\texteuro}}}, der leichten Erweiterbarkeit und der guten Softwareunterstützung ist der \emph{Raspberry Pi} bei Bastlern sehr beliebt. Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{verkauf}) und 6 verschiedene Modelle entwickelt. (Bis Februar 2015)
 
 \subsection{Technische Daten}
 \label{subsec:Technische Daten}
@@ -39,7 +39,7 @@ Zur Messung der Umweltdaten werden folgende Sensoren verwendet:
 \item Luftfeuchtesensor \emph{DHT22} (\ref{subsec:Luftfeuchtigkeit})
 \item Luftdrucksensor \emph{BMP085} (\ref{subsec:Luftdruck})
 \item Luftqualitätssensor \emph{VOLTCRAFT CO-20} (\ref{subsec:Luftqualitat})
-\item\gls{CPU}-Temperatur des Raspberry Pi
+\item\gls{CPU}-Temperatur des \emph{Raspberry Pi}
 \end{itemize}
 \subsection{Temperatur}
 \label{subsec:Temperatur}
@@ -53,7 +53,7 @@ Mithilfe von 4 Sensoren des Typs \emph{DS18B20} werden die Innentemperatur, die 
   \label{fig:temp_pin}
 \end{figure}
 
-Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}} nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abbildung \ref{fig:temp_pin})
+Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abbildung \ref{fig:temp_pin})
 Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
 
 Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine \gls{Geraetedatei} ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
@@ -125,6 +125,9 @@ Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \em
 
 \section{Anschluss}
 \label{sec:Anschluss}
+
+Anfangs wurde sämtliche Hardware auf einem \gls{Steckbrett} aufgesteckt und mit einzelnen Kabeln verbunden. Dies ist sehr praktisch für schnelle Versuche und häufige Änderungen, ist aber sehr unstabil und nicht transportabel.
+
 \begin{figure}[h]
 	\begin{minipage}[b]{0.45\textwidth}
 		\centering
@@ -147,7 +150,6 @@ Da jedoch fix angelötete Kabel unflexibel sind, bin ich auf ein Display von \em
 		\caption{neue Sensoren auf dem \gls{Steckbrett}}
 	\end{minipage}
 \end{figure}
-Anfangs wurde sämtliche Hardware auf einem \gls{Steckbrett} aufgesteckt und mit einzelnen Kabeln verbunden. Dies ist sehr praktisch für schnelle Versuche und häufige Änderungen, ist aber sehr unstabil und nicht transportabel.
 
 Daher wurden alle Sensoren auf \glspl{Streifenplatine} gelötet, welche mit Steckverbindungen und Kabeln miteinander verbunden werden.
 
@@ -174,7 +176,7 @@ Daher wurden alle Sensoren auf \glspl{Streifenplatine} gelötet, welche mit Stec
 	\end{minipage}
 \end{figure}
 
-Die komplette Hardware ist nun in einer Holzbox, mit einer Öffnung für das Display und 3  \glspl{LED} auf der Vorderseite. Eine grüne \gls{LED} signalisiert, dass die Aufzeichnung gerade läuft. Eine gelbe \gls{LED} leuchtet kurz auf, wenn gerade eine Messung aufgrund eines Fehlers wiederholt wird. Und eine rote \gls{LED} zeigt, dass die Aufzeichnung gerade gestoppt ist. Zusätzlich gibt es am rechten Rand eine Öffnung für die USB-Anschlüsse und zwei Steckverbindungen für die Außensensoren. Am linken Rand ist eine kleiner Spalt für die Stromversorgung.
+Die komplette Hardware ist nun in einer Holzbox, mit einer Öffnung für das Display und 3  \glspl{LED} auf der Vorderseite. Eine grüne \gls{LED} signalisiert, dass die Aufzeichnung gerade läuft. Eine gelbe \gls{LED} leuchtet kurz auf, wenn gerade eine Messung aufgrund eines Fehlers wiederholt wird. Und eine rote \gls{LED} zeigt, dass die Aufzeichnung gerade gestoppt ist. Zusätzlich gibt es am rechten Rand eine Öffnung für die USB-Anschlüsse und zwei Steckverbindungen für die Außensensoren. Am linken Rand ist ein kleiner Spalt für die Stromversorgung.
 
 \begin{figure}[h]
 	\centering
