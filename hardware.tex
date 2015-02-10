@@ -16,19 +16,19 @@ Der \emph{Raspberry Pi} ist ein \gls{Einplatinencomputer}, der 2012 von der \emp
 
 \subsection{Geschichte}
 \label{subsec:Geschichte}
-Ursprünglich war der Raspberry Pi als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \emph{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmen beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
+Ursprünglich war der Raspberry Pi als günstiger Computer gedacht, um britischen Jugendlichen das Programmieren näher zu bringen. An der \emph{University of Cambridge} stellte man fest, dass die Vorkenntnisse von Studienanfängern immer geringer wurden, weil sie -- sowohl privat als auch in der Schule -- sich immer weniger mit der Funktionsweise von Computern und Programmieren beschäftigen. Daher wollte man einen Computer entwickeln, mit dem die Jugendlichen experimentieren können.
 \footcite{aboutraspberry}$^,$
 \footcite[Geschichte]{wiki:raspberry}
 
-Aufgrund des günstigen Preises\footnote{je nach Modell zwischen 30 und \SI{40}{\text{\texteuro}}}, der leichten Erweiterbarkeit und der guten Softwareunterstützung ist der \emph{Raspberry Pi} bei Bastlern sehr beliebt. Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{verkauf}) und 6 verschiedene Modelle entwickelt. (Bis Februar 2015)
+Aufgrund des günstigen Preises\footnote{je nach Modell zwischen 30 und \SI{40}{\text{\texteuro}}}, der leichten Erweiterbarkeit und der guten Softwareunterstützung ist der \emph{Raspberry Pi} bei Bastlern sehr beliebt. Inzwischen wurden 3,8 Millionen Stück verkauft (Stand Oktober 2014\footcite{verkauf}) und 6 verschiedene Modelle entwickelt (bis Februar 2015).
 
 \subsection{Technische Daten}
 \label{subsec:Technische Daten}
-Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \gls{CPU} mit \SI{700}{\glslink{Hertz}{\mega\hertz}}, welche auf bis zu \SI{1}{\glslink{Hertz}{\giga\hertz}} übertaktbar ist, und je nach Modell \SI{256}{} oder \SI{512}{\mega\byte} Arbeitsspeicher. Als Speicher für das Betriebssystem (verschiedene \glspl{Linux-Distribution} stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
+Die Technik in einem Raspberry Pi ist vergleichbar mit der eines Smartphones. Der Raspberry Pi hat eine \gls{CPU} mit \SI{700}{\glslink{Hertz}{\mega\hertz}}, welche auf bis zu \SI{1}{\glslink{Hertz}{\giga\hertz}} übertaktbar ist, und je nach Modell \SI{256}{} oder \SI{512}{\mega\byte} Arbeitsspeicher. Das neueste Modell (\emph{Raspberry Pi 2 Model B}; lieferbar seit dem 2. Februar 2015) hat sogar 4\ensuremath{\times} \SI{900}{\glslink{Hertz}{\mega\hertz}} \gls{CPU}-Takt und \SI{1}{\giga\byte} Arbeitsspeicher. Als Speicher für das Betriebssystem (verschiedene \glspl{Linux-Distribution} stehen zur Auswahl) wird eine SD-Karte bzw. eine microSD-Karte verwendet.
 
 Zur Stromversorgung genügt ein normales Handyladegerät mit Micro-USB-Anschluss und mindestens \SI{1}{\gls{Ampere}} Stromstärke, denn der Raspberry Pi verbaucht nur \SI{3.5}{Watt}\footcite{strom} (Modell B).
 
-Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und 26 \gls{gpio}-Pins.
+Zum Anschließen anderer Hardware gibt es zwei USB-Anschlüsse und mindestens 26 \gls{gpio}-Pins.
 
 \section{Sensoren}
 \label{sec:Sensoren}
@@ -53,10 +53,10 @@ Mithilfe von 4 Sensoren des Typs \emph{DS18B20} werden die Innentemperatur, die 
   \label{fig:temp_pin}
 \end{figure}
 
-Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt. (siehe Abbildung \ref{fig:temp_pin})
+Der Sensor wird mithilfe von einem \gls{1-Wire}-\gls{Bus} ausgelesen. Hierbei benötigt man (außer für die Stromversorgung mit \SI{5}{\gls{Volt}}) nur ein Kabel, auf dem die Daten übertragen werden.\footcite{1-wire} Zusätzlich wird ein \SI{4.7}{\kilo\glslink{Ohm}{\ohm}} Widerstand zwischen dem Pin für Daten und dem Pin für \SI[retain-explicit-plus]{+5}{\glslink{Volt}{\volt}} benötigt (siehe Abbildung \ref{fig:temp_pin}).
 Ein weiterer Vorteil von 1-Wire ist, dass nahezu beliebig viele Sensoren auf einem Datenkabel parallel geschaltet werden können.
 
-Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur zu erhalten, muss  nur eine \gls{Geraetedatei} ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält. (Siehe Abbildung \ref{fig:temp_screenshot})
+Die Messdaten des \emph{DS18B20} können auf dem Raspberry Pi sehr einfach ausgelesen werden, weil dies von einem Linux-\gls{Kernelmodul} erledigt wird. Um die Temperatur auszulesen, muss  nur eine \gls{Geraetedatei} ausgelesen werden, welche das Messergebnis in tausendstel Grad Celsius enthält (Siehe Abbildung \ref{fig:temp_screenshot}).
 
 \begin{figure}[h]
   \centering
@@ -176,7 +176,7 @@ Daher wurden alle Sensoren auf \glspl{Streifenplatine} gelötet, welche mit Stec
 	\end{minipage}
 \end{figure}
 
-Die komplette Hardware ist nun in einer Holzbox, mit einer Öffnung für das Display und 3  \glspl{LED} auf der Vorderseite. Eine grüne \gls{LED} signalisiert, dass die Aufzeichnung gerade läuft. Eine gelbe \gls{LED} leuchtet kurz auf, wenn gerade eine Messung aufgrund eines Fehlers wiederholt wird. Und eine rote \gls{LED} zeigt, dass die Aufzeichnung gerade gestoppt ist. Zusätzlich gibt es am rechten Rand eine Öffnung für die USB-Anschlüsse und zwei Steckverbindungen für die Außensensoren. Am linken Rand ist ein kleiner Spalt für die Stromversorgung.
+Die komplette Hardware ist nun in einer Holzbox, mit einer Öffnung für das Display und 3  \glspl{LED} auf der Vorderseite untergebracht. Eine grüne \gls{LED} signalisiert, dass die Aufzeichnung gerade läuft. Eine gelbe \gls{LED} leuchtet kurz auf, wenn gerade eine Messung aufgrund eines Fehlers wiederholt wird. Und eine rote \gls{LED} zeigt, dass die Aufzeichnung gerade gestoppt ist. Zusätzlich gibt es am rechten Rand eine Öffnung für die USB-Anschlüsse und zwei Steckverbindungen für die Außensensoren. Am linken Rand ist eine kleine Öffnung für die Spannungsversorgung.
 
 \begin{figure}[h]
 	\centering

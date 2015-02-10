@@ -46,7 +46,7 @@ Als erstes werden die Sensoren ausgelesen. Am einfachsten kann der im \emph{Rasp
 \codeline{main.sh}{bash}{32}
 
 Nur wenig aufwändiger ist das Auslesen der Temperatursensoren (\emph{DS18B20}, siehe \ref{subsec:Temperatur}). 
-Auch hier wird eine \gls{Geraetedatei} ausgelesen, jedoch ist hier die Ausgabe umfangreicher. (siehe Abbildung \ref{fig:temp_screenshot} auf Seite \pageref{fig:temp_screenshot})
+Auch hier wird eine \gls{Geraetedatei} ausgelesen, jedoch ist hier die Ausgabe umfangreicher (siehe Abbildung \ref{fig:temp_screenshot} auf Seite \pageref{fig:temp_screenshot}).
 Daher muss zunächst mit \emph{grep} und \emph{awk} die Zahl herausgeschnitten werden. Um nun von tausendstel Grad Celsius zu \si{\degreeCelsius} zu kommen, wird  mithilfe des \emph{basic calculator} (\emph{bc}) durch 1000 dividiert.
 
 Da die Sensoren manchmal ungültige Werte zurückgeben, wird nach der ersten Messung überprüft, ob dies der Fall ist (Zeile 34) und die Messung solange wiederholt, bis eine gültige Messung erfolgt.
@@ -67,7 +67,7 @@ Nachdem alle Sensoren ausgelesen wurden, müssen die Messwerte dauerhaft gespeic
 \code{main.sh}{bash}{89}{90}
 Hierdurch entsteht eine \gls{CSV}-Datei die wie folgt aussehen kann:
 \dateiklein{dygraphs.csv}
-Diese Datei wird in den Ordner des Webservers kopiert, damit sie grafisch dargestellt werden kann (siehe \ref{subsec:Diagramme}). Weiters verwendet die \textit{Endauswertung} (siehe \ref{sec:Endauswertung}) auch diese Datei.
+Diese Datei wird in den Ordner des Webservers kopiert, damit sie grafisch dargestellt werden kann (siehe \ref{subsec:Diagramme}). Außerdem verwendet die \textit{Endauswertung} (siehe \ref{sec:Endauswertung}) auch diese Datei.
 
 Als nächstes wird der Text für das Display (siehe \ref{sec:Display}) erzeugt. Da dort der Platz beschränkt ist (16x2 Zeichen), werden alle Messwerte um 3 Stellen (bzw. 2 bei Luftdruck) gekürzt. Anschließend werden diese Daten in \emph{text.txt} (für Display) und \emph{text\_ws.txt} (für Webinterface) exportiert.
 \codeline{main.sh}{bash}{92}
@@ -78,7 +78,7 @@ Abschließend wird noch 8 Sekunden gewartet und jedes tausendste Mal ein Backup 
 
 \section{Display}
 \label{sec:Software/Display}
-Um die aktuellen Messungen auch ohne Computer zu sehen, werden sie auch direkt am Raspberry Pi auf einem Display angezeigt (siehe auch \ref{sec:Display}). Um das Display anzusteuern wird ein Programm\footcite{schnatterente_code} von \emph{schnatterente.net} verwendet. Dieses wurde von mir um einige Funktionen ergänzt. 
+Um die aktuellen Messungen auch ohne Computer zu sehen, werden sie direkt am Raspberry Pi auf einem Display angezeigt (siehe auch \ref{sec:Display}). Um das Display anzusteuern, wird ein Programm\footcite{schnatterente_code} von \emph{schnatterente.net} verwendet. Dieses wurde von mir um einige Funktionen ergänzt. 
 
 Das Programm liest aus \emph{text.txt} (siehe Datei \ref{file:text.txt}) die aktuellen Messwerte aus. Da der Platz jedoch stark beschränkt ist, werden diese auf 11 Seiten aufgeteilt, zwischen denen das Display alle 3 Sekunden wechselt.
 \begin{figure}[h]
@@ -104,12 +104,12 @@ Einer der wichtigsten Teile des Projektes ist die grafische Auswertung. Diese ka
 \end{figure}
 
 Im Webinterface können die aktuellen Messwerte angezeigt und grafisch veranschaulicht werden.\footnote{\href{http://winkler.kremszeile.at/aktuell.html}{winkler.kremszeile.at/aktuell.html}}
-Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Webbrowser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}
+Hierzu wird alle 5 Sekunden mithilfe von \gls{Javascript} die Datei \emph{text\_ws.txt} nachgeladen und ausgewertet. Zusätzlich zur Anzeige der Zahlenwerte werden die Messungen mithilfe von Balken und Farbverläufen angezeigt. Für ältere Webbrowser gibt es auch eine einfache tabellarische Ansicht\footnote{\href{http://winkler.kremszeile.at/aktuell_einfach.html}{winkler.kremszeile.at/aktuell\_einfach.html}}.
 
 \subsubsection{Wetter-Rater}
 \label{subsubsec:Wetterrater}
 
-Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen auf Grundlage der Messungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es Niederschlag gibt.
+Um die Daten auch anders zu nutzen habe ich einen \emph{Wetter-Rater} programmiert. Dieser versucht auf Basis von einfachen Berechnungen und Schätzungen auf Grundlage der Messungen das aktuelle Wetter zu \enquote{erraten}. So wird zum Beispiel die aktuelle Außentemperatur mit der nach Jahreszeit und Tageszeit zu erwartenden Temperatur verglichen, um Rückschlüsse auf den Bewölkungsgrad zu ziehen oder aufgrund der Luftfeuchtigkeit ermittelt, ob es gerade Niederschlag gibt.
 
 Hierzu wird die Temperaturschwankung über einen Tag als Cosinusfunktion mit einer Schwankung von \SI{5}{\degreeCelsius} angenommen.
 $$ \textit{Temperaturerwartung} = -5 \cdot \cos\left(\frac{\text{Stunde}\cdot 2 \cdot \pi }{24}\right) + \textit{Mittlere Temp. des Tages}; $$
@@ -194,7 +194,7 @@ Abgesehen von den großen Teilen des Projektes gibt es auch kleinere Aspekte, vo
 \subsection{Weather Underground}
 \label{subsec:wunderground}
 
-\emph{Weather Underground} ist ein Online-Wetterdienst mit Firmensitz in San Francisco.\footcite{wiki:wunderground} Dieser bietet auch die Möglichkeit eine eigene Wetterstation zu betreiben und die Daten auf ihrer Webseite anzuzeigen.\footnote{\href{http://www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}{www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}}
+\emph{Weather Underground} ist ein Online-Wetterdienst mit Firmensitz in San Francisco.\footcite{wiki:wunderground} Dieser bietet auch die Möglichkeit, eine eigene Wetterstation zu betreiben und die Daten auf ihrer Webseite anzuzeigen.\footnote{\href{http://www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}{www.wunderground.com/personal-weather-station/dashboard?ID=INIEDERS353}}
 Leider werden die Wetterdaten nur in imperialen Einheiten (also \si{\degree F} und \si{\mmHg}\footnote{Millimeter-Quecksilbersäule oder Torr}) akzeptiert. Daher werden die Messwerte vorher von einem \gls{Python}-Programm umgerechnet und anschließend hochgeladen.
 
 \subsection{Autostart}
@@ -205,7 +205,7 @@ Damit die Umweltdatenmessung einfacher zu handhaben ist, gibt es ein einfaches S
 \subsection{mitternacht.sh}
 \label{subsec:mitternacht.sh}
 
-Da der Raspberry Pi in der Schule hängt und nicht von außerhalb erreicht werden kann, ist es schwierig Softwareänderungen anzuwenden. Daher habe ich das kleine Skript \emph{mitternacht.sh} geschrieben. Dieses startet täglich um 0:00 Uhr und lädt die neuerste Version von \gls{Github} herunter und installiert diese. Zusätzlich werden auch das Betriebssystem und alle installierten Programme aktualisiert. Anschließend werde ich per Push-Benachrichtigung über etwaige Probleme benachrichtigt und der Raspberry Pi startet neu.
+Da der Raspberry Pi in der Schule hängt und nicht von außerhalb erreicht werden kann, ist es schwierig Softwareänderungen vorzunehmen. Daher habe ich das kleine Skript \emph{mitternacht.sh} geschrieben. Dieses startet täglich um 0:00 Uhr und lädt die neueste Version von \gls{Github} herunter und installiert diese. Zusätzlich werden auch das Betriebssystem und alle installierten Programme aktualisiert. Anschließend werde ich per Push-Benachrichtigung über etwaige Probleme benachrichtigt und der Raspberry Pi startet neu.
 
 \subsection{sonstiges}
 \label{subsec:sonstiges}
